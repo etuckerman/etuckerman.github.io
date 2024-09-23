@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const typingElement = document.querySelector('.typing');
-    const roles = ["a Machine Learning Engineer", "a Data Scientist", "a Games Developer"];
+    const roles = ["a Machine Learning Engineer", "a Data Scientist", "a Game Developer"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
