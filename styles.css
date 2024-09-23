@@ -100,6 +100,8 @@ main {
 
 section {
     margin-bottom: 60px;
+    padding-top: var(--header-height);
+    margin-top: calc(-1 * var(--header-height));
 }
 
 h2 {
@@ -229,4 +231,8 @@ footer {
 /* Add this to your project page CSS */
 .project-container {
     padding-top: 80px; /* Adjust this value as needed */
+}
+
+:root {
+    --header-height: 60px; /* Adjust this value to match your header's actual height */
 }
