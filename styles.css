@@ -84,8 +84,8 @@ main {
 }
 
 .hero-image {
-    width: 250px;
-    height: 250px;
+    width: 280px;  /* Increased from 250px */
+    height: 280px; /* Increased from 250px */
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #00bcd4;
@@ -96,6 +96,8 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 47% 50%; /* Adjusted from 60% to 70% */
+    transform: scale(1.4); /* Adjust this value as needed */
 }
 
 section {
@@ -201,8 +203,8 @@ footer {
     }
 
     .hero-image {
-        width: 200px;
-        height: 200px;
+        width: 220px;  /* Adjust as needed */
+        height: 220px; /* Adjust as needed */
     }
     
     .hero-content h1 {
