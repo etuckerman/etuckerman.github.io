@@ -1,33 +1,40 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1em 0;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    padding: 2em 0;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
+    font-size: 2.5em;
+}
+
+.intro p {
+    font-size: 1.2em;
+    margin-top: 0.5em;
 }
 
 section {
     padding: 2em;
     margin: 1em auto;
     max-width: 800px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #1f1f1f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #e0e0e0;
     padding-bottom: 0.5em;
+    color: #00bcd4;
 }
 
 ul {
@@ -40,10 +47,25 @@ ul li {
 }
 
 a {
-    color: #333;
+    color: #00bcd4;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+.profile-pic img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
 }
