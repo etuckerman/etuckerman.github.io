@@ -12,134 +12,97 @@
         <h1>LLaMA 3.1 QA Fine-Tune Project</h1>
     </header>
     <main class="project-container">
-        <section id="project-overview" class="project-section">
-            <h2>Project Overview</h2>
-            <p>In this project, I fine-tuned the LLaMA 3.1 70B-Instruct model on a custom RV (Recreational Vehicle) dataset. The goal was to create a specialized model capable of answering detailed questions about various RV models, their features, and specifications.</p>
-        </section>
+        <div class="grid-layout">
+            <section id="project-overview" class="project-section full-width">
+                <h2>Project Overview</h2>
+                <p>Fine-tuned the LLaMA 3.1 70B-Instruct model on a custom RV dataset to create a specialized model for answering detailed questions about various RV models, features, and specifications.</p>
+            </section>
 
-        <section id="key-achievements" class="project-section">
-            <h2>Key Achievements</h2>
-            <ul>
-                <li>Successfully fine-tuned a large language model (70B parameters) for a specific domain</li>
-                <li>Implemented advanced fine-tuning techniques using PEFT, LoRA, and Unsloth</li>
-                <li>Optimized the model for efficient inference on limited hardware</li>
-                <li>Deployed the fine-tuned model to Hugging Face Hub for easy access and integration</li>
-            </ul>
-        </section>
-
-        <section id="skills-used" class="project-section">
-            <h2>Skills and Technologies Used</h2>
-            <ul>
-                <li>Python programming</li>
-                <li>PyTorch and Hugging Face Transformers library</li>
-                <li>Large Language Model fine-tuning techniques</li>
-                <li>PEFT (Parameter-Efficient Fine-Tuning)</li>
-                <li>LoRA (Low-Rank Adaptation)</li>
-                <li>Unsloth for optimization</li>
-                <li>Data preprocessing and formatting</li>
-                <li>Model deployment to Hugging Face Hub</li>
-            </ul>
-        </section>
-
-        <section id="challenges-solutions" class="project-section">
-            <h2>Challenges and Solutions</h2>
-            <h3>Challenge 1: Limited Computational Resources</h3>
-            <p>Fine-tuning a 70B parameter model requires significant computational power. To overcome this, I implemented several optimization techniques:</p>
-            <ul>
-                <li>Used 4-bit quantization to reduce memory usage</li>
-                <li>Implemented LoRA for parameter-efficient fine-tuning</li>
-                <li>Utilized Unsloth for optimized training, reducing VRAM usage by 30%</li>
-            </ul>
-
-            <h3>Challenge 2: Custom Dataset Formatting</h3>
-            <p>The RV dataset needed specific formatting for effective fine-tuning. I created a custom formatting function to prepare the data:</p>
-            <pre><code>
-def formatting_prompts_func(examples):
-    questions = examples["Question"]
-    answers = examples["Answer"]
-    texts = []
-    for question, answer in zip(questions, answers):
-        text = alpaca_prompt.format(question, answer) + EOS_TOKEN
-        texts.append(text)
-    return {"text": texts}
-            </code></pre>
-        </section>
-
-        <section id="key-learnings" class="project-section">
-            <h2>Key Learnings</h2>
-            <ul>
-                <li>Gained deep understanding of large language model fine-tuning processes</li>
-                <li>Learned to balance model performance with computational efficiency</li>
-                <li>Improved skills in data preprocessing for NLP tasks</li>
-                <li>Developed expertise in using advanced libraries like PEFT and Unsloth</li>
-                <li>Enhanced ability to deploy and share models through platforms like Hugging Face Hub</li>
-            </ul>
-        </section>
-
-        <section id="future-improvements" class="project-section">
-            <h2>Future Improvements</h2>
-            <ul>
-                <li>Expand the dataset to cover a wider range of RV models and specifications</li>
-                <li>Implement a more sophisticated prompt engineering technique</li>
-                <li>Explore multi-task fine-tuning to improve the model's general knowledge while maintaining RV expertise</li>
-                <li>Develop a user-friendly interface for non-technical users to interact with the model</li>
-            </ul>
-        </section>
-
-        <section id="conclusion" class="project-section">
-            <h2>Conclusion</h2>
-            <p>This project demonstrated the power of fine-tuning large language models for specific domains. By successfully adapting the LLaMA 3.1 70B-Instruct model to the RV industry, I've created a valuable tool that can provide accurate and detailed information about various RV models. This experience has significantly enhanced my skills in NLP, model optimization, and deployment of AI solutions.</p>
-        </section>
-
-        <section id="training-process" class="project-section">
-            <h2>Training Process and Results</h2>
-            <div class="training-grid">
-                <div class="training-config">
-                    <h3>Configuration</h3>
-                    <ul>
-                        <li>GPUs: 1</li>
-                        <li>Examples: 16</li>
-                        <li>Epochs: 30</li>
-                        <li>Batch size: 2</li>
-                        <li>Total steps: 60</li>
-                        <li>Trainable parameters: 207,093,760</li>
-                    </ul>
-                </div>
-                <div class="training-chart">
-                    <div id="loss-chart"></div>
-                </div>
-            </div>
-            <div class="training-observations">
-                <h3>Key Observations</h3>
-                <ul>
-                    <li>Rapid initial improvement: Loss dropped from 2.5866 to 0.4676 in first 10 steps</li>
-                    <li>Steady refinement: Loss decreased gradually, reaching below 0.1 by step 32</li>
-                    <li>Stability: Loss stabilized around 0.07 from step 40 onwards</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="model-performance" class="project-section">
-            <h2>Model Performance</h2>
-            <div class="performance-grid">
-                <div class="performance-metrics">
-                    <h3>Metrics</h3>
-                    <ul>
-                        <li>Final Loss: 0.0692</li>
-                        <li>Perplexity: 3.2</li>
-                        <li>BLEU Score: 0.85</li>
-                        <li>Custom Accuracy: 92%</li>
-                    </ul>
-                </div>
-                <div class="performance-example">
-                    <h3>Sample Output</h3>
-                    <div class="qa-example">
-                        <p><strong>Q: Does the Jayco Eagle have a queen size bed?</strong></p>
-                        <p>A: Yes, the Jayco Eagle typically comes with a queen size bed in the master bedroom. Some models may even offer a king size bed option.</p>
+            <section id="training-process" class="project-section full-width">
+                <h2>Training Process and Results</h2>
+                <div class="training-grid">
+                    <div class="training-config">
+                        <h3>Configuration</h3>
+                        <ul>
+                            <li>GPUs: 1</li>
+                            <li>Examples: 16</li>
+                            <li>Epochs: 30</li>
+                            <li>Batch size: 2</li>
+                            <li>Total steps: 60</li>
+                            <li>Trainable parameters: 207,093,760</li>
+                        </ul>
+                    </div>
+                    <div class="training-chart">
+                        <div id="loss-chart"></div>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="training-observations">
+                    <h3>Key Observations</h3>
+                    <ul>
+                        <li>Rapid initial improvement: Loss dropped from 2.5866 to 0.4676 in first 10 steps</li>
+                        <li>Steady refinement: Loss decreased gradually, reaching below 0.1 by step 32</li>
+                        <li>Stability: Loss stabilized around 0.07 from step 40 onwards</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="model-performance" class="project-section full-width">
+                <h2>Model Performance</h2>
+                <div class="performance-grid">
+                    <div class="performance-metrics">
+                        <h3>Metrics</h3>
+                        <ul>
+                            <li>Final Loss: 0.0692</li>
+                            <li>Perplexity: 3.2</li>
+                            <li>BLEU Score: 0.85</li>
+                            <li>Custom Accuracy: 92%</li>
+                        </ul>
+                    </div>
+                    <div class="performance-example">
+                        <h3>Sample Output</h3>
+                        <div class="qa-example">
+                            <p><strong>Q: Does the Jayco Eagle have a queen size bed?</strong></p>
+                            <p>A: Yes, the Jayco Eagle typically comes with a queen size bed in the master bedroom. Some models may even offer a king size bed option.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="key-achievements" class="project-section half-width">
+                <h2>Key Achievements</h2>
+                <ul>
+                    <li>Successfully fine-tuned a 70B parameter model for the RV domain</li>
+                    <li>Implemented PEFT, LoRA, and Unsloth for efficient training</li>
+                    <li>Optimized model for inference on limited hardware</li>
+                    <li>Deployed to Hugging Face Hub for easy access and integration</li>
+                </ul>
+            </section>
+
+            <section id="skills-and-learnings" class="project-section half-width">
+                <h2>Skills and Learnings</h2>
+                <div class="skills-grid">
+                    <div class="skills-used">
+                        <h3>Technologies Used</h3>
+                        <ul>
+                            <li>Python, PyTorch</li>
+                            <li>Hugging Face Transformers</li>
+                            <li>PEFT, LoRA, Unsloth</li>
+                            <li>Data preprocessing</li>
+                            <li>Model deployment</li>
+                        </ul>
+                    </div>
+                    <div class="key-learnings">
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>Deep understanding of LLM fine-tuning processes</li>
+                            <li>Balancing performance with computational efficiency</li>
+                            <li>Advanced data preprocessing for NLP tasks</li>
+                            <li>Expertise in using cutting-edge optimization libraries</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
         <p><a href="index.html">Back to Portfolio</a></p>
@@ -156,8 +119,8 @@ def formatting_prompts_func(examples):
             title: 'Training Loss Over Steps',
             xaxis: {title: 'Step'},
             yaxis: {title: 'Loss'},
-            plot_bgcolor: '#1f1f1f',
-            paper_bgcolor: '#1f1f1f',
+            plot_bgcolor: '#2a2a2a',
+            paper_bgcolor: '#2a2a2a',
             font: {color: '#e0e0e0'},
             margin: {t: 30, b: 40, l: 60, r: 10}
         };

@@ -116,9 +116,15 @@ footer {
 }
 
 .project-container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .project-section {
@@ -129,7 +135,21 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.training-grid, .performance-grid, .skills-grid {
+.full-width {
+    grid-column: span 2;
+}
+
+.half-width {
+    grid-column: span 1;
+}
+
+.training-grid, .performance-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -142,7 +162,7 @@ footer {
 }
 
 #loss-chart {
-    height: 300px;
+    height: 400px;
 }
 
 .training-observations ul, .key-achievements ul, .skills-used ul, .key-learnings ul {
@@ -153,8 +173,26 @@ footer {
     margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width, .half-width {
+        grid-column: span 1;
+    }
+
     .training-grid, .performance-grid, .skills-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-container {
+        padding: 10px;
+    }
+
+    .project-section {
+        padding: 15px;
     }
 }
