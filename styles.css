@@ -12,6 +12,7 @@ header {
     position: fixed;
     width: 100%;
     z-index: 1000;
+    top: 0;
 }
 
 nav ul {
@@ -40,26 +41,41 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 60px; /* Add this line to create space for the fixed header */
 }
 
 #hero {
-    height: 100vh;
+    height: calc(100vh - 60px); /* Subtract header height from 100vh */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('path/to/hero-image.jpg') no-repeat center center/cover;
+    background-color: var(--card-bg); /* Remove the background image for now */
+    margin-top: 60px; /* Add this to push the hero section below the header */
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 }
 
-.hero-content p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
+.hero-text {
+    text-align: left;
+}
+
+.hero-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 section {
@@ -159,4 +175,9 @@ footer {
     .project-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Add this to your project page CSS */
+.project-container {
+    padding-top: 80px; /* Adjust this value as needed */
 }
