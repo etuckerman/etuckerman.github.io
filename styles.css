@@ -41,7 +41,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 60px; /* Add this line to create space for the fixed header */
+    padding-top: 60px; /* Space for the fixed header */
 }
 
 #hero {
@@ -50,8 +50,8 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: var(--card-bg); /* Remove the background image for now */
-    margin-top: 60px; /* Add this to push the hero section below the header */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('path/to/hero-image.jpg') no-repeat center center/cover;
+    margin-top: 60px; /* Push the hero section below the header */
 }
 
 .hero-content {
@@ -59,6 +59,9 @@ main {
     align-items: center;
     justify-content: center;
     gap: 40px;
+    background-color: rgba(31, 31, 31, 0.8); /* Semi-transparent grey box */
+    padding: 40px;
+    border-radius: 10px;
 }
 
 .hero-text {
