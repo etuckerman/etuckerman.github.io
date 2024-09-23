@@ -12,15 +12,18 @@
         <h1>LLaMA 3.1 QA Fine-Tune Project</h1>
     </header>
     <main class="project-container">
-        <div class="grid-layout">
-            <section id="project-overview" class="project-section full-width">
-                <h2>Project Overview</h2>
-                <p>Fine-tuned the LLaMA 3.1 70B-Instruct model on a custom RV dataset to create a specialized model for answering detailed questions about various RV models, features, and specifications.</p>
-            </section>
-
-            <section id="training-process" class="project-section full-width">
-                <h2>Training Process and Results</h2>
-                <div class="training-grid">
+        <section id="project-overview" class="project-section">
+            <h2>Project Overview</h2>
+            <p>Fine-tuned the LLaMA 3.1 70B-Instruct model on a custom RV dataset to create a specialized model for answering detailed questions about various RV models, features, and specifications.</p>
+        </section>
+        
+        <div class="main-content">
+            <div class="left-column">
+                <section id="training-process" class="project-section">
+                    <h2>Training Process and Results</h2>
+                    <div class="training-chart">
+                        <div id="loss-chart"></div>
+                    </div>
                     <div class="training-config">
                         <h3>Configuration</h3>
                         <ul>
@@ -32,23 +35,12 @@
                             <li>Trainable parameters: 207,093,760</li>
                         </ul>
                     </div>
-                    <div class="training-chart">
-                        <div id="loss-chart"></div>
-                    </div>
-                </div>
-                <div class="training-observations">
-                    <h3>Key Observations</h3>
-                    <ul>
-                        <li>Rapid initial improvement: Loss dropped from 2.5866 to 0.4676 in first 10 steps</li>
-                        <li>Steady refinement: Loss decreased gradually, reaching below 0.1 by step 32</li>
-                        <li>Stability: Loss stabilized around 0.07 from step 40 onwards</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="model-performance" class="project-section full-width">
-                <h2>Model Performance</h2>
-                <div class="performance-grid">
+                </section>
+            </div>
+            
+            <div class="right-column">
+                <section id="model-performance" class="project-section">
+                    <h2>Model Performance</h2>
                     <div class="performance-metrics">
                         <h3>Metrics</h3>
                         <ul>
@@ -65,43 +57,43 @@
                             <p>A: Yes, the Jayco Eagle typically comes with a queen size bed in the master bedroom. Some models may even offer a king size bed option.</p>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="key-achievements" class="project-section half-width">
-                <h2>Key Achievements</h2>
-                <ul>
-                    <li>Successfully fine-tuned a 70B parameter model for the RV domain</li>
-                    <li>Implemented PEFT, LoRA, and Unsloth for efficient training</li>
-                    <li>Optimized model for inference on limited hardware</li>
-                    <li>Deployed to Hugging Face Hub for easy access and integration</li>
-                </ul>
-            </section>
+                <section id="key-achievements" class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Successfully fine-tuned a 70B parameter model for the RV domain</li>
+                        <li>Implemented PEFT, LoRA, and Unsloth for efficient training</li>
+                        <li>Optimized model for inference on limited hardware</li>
+                        <li>Deployed to Hugging Face Hub for easy access and integration</li>
+                    </ul>
+                </section>
 
-            <section id="skills-and-learnings" class="project-section half-width">
-                <h2>Skills and Learnings</h2>
-                <div class="skills-grid">
-                    <div class="skills-used">
-                        <h3>Technologies Used</h3>
-                        <ul>
-                            <li>Python, PyTorch</li>
-                            <li>Hugging Face Transformers</li>
-                            <li>PEFT, LoRA, Unsloth</li>
-                            <li>Data preprocessing</li>
-                            <li>Model deployment</li>
-                        </ul>
+                <section id="skills-and-learnings" class="project-section">
+                    <h2>Skills and Learnings</h2>
+                    <div class="skills-grid">
+                        <div class="skills-used">
+                            <h3>Technologies Used</h3>
+                            <ul>
+                                <li>Python, PyTorch</li>
+                                <li>Hugging Face Transformers</li>
+                                <li>PEFT, LoRA, Unsloth</li>
+                                <li>Data preprocessing</li>
+                                <li>Model deployment</li>
+                            </ul>
+                        </div>
+                        <div class="key-learnings">
+                            <h3>Key Takeaways</h3>
+                            <ul>
+                                <li>Deep understanding of LLM fine-tuning processes</li>
+                                <li>Balancing performance with computational efficiency</li>
+                                <li>Advanced data preprocessing for NLP tasks</li>
+                                <li>Expertise in using cutting-edge optimization libraries</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="key-learnings">
-                        <h3>Key Takeaways</h3>
-                        <ul>
-                            <li>Deep understanding of LLM fine-tuning processes</li>
-                            <li>Balancing performance with computational efficiency</li>
-                            <li>Advanced data preprocessing for NLP tasks</li>
-                            <li>Expertise in using cutting-edge optimization libraries</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </main>
     <footer>
