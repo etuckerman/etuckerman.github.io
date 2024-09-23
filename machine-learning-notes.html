@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning & AI Study Notes | Elliot Tuckerman</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <!-- Your header content -->
+    </header>
+
+    <main class="notes-container">
+        <h1>Machine Learning & AI Study Notes</h1>
+        <p>These are my comprehensive notes from studying the fundamentals of machine learning and AI. Click on the image to zoom in and explore the details.</p>
+        <div class="svg-container">
+            <object type="image/svg+xml" data="/images/notes.svg" class="notes-svg">
+                Your browser does not support SVG
+            </object>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/svg-pan-zoom.min.js"></script>
+    <script>
+        // Initialize SVG Pan Zoom
+        document.addEventListener('DOMContentLoaded', function() {
+            svgPanZoom('.notes-svg', {
+                zoomEnabled: true,
+                controlIconsEnabled: true,
+                fit: true,
+                center: true,
+            });
+        });
+    </script>
+</body>
+</html>
