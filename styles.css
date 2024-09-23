@@ -236,3 +236,8 @@ footer {
 :root {
     --header-height: 60px; /* Adjust this value to match your header's actual height */
 }
+
+html {
+    scroll-padding-top: var(--header-height);
+    scroll-behavior: smooth;
+}
