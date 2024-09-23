@@ -56,19 +56,26 @@ main {
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 40px;
+    justify-content: space-between;
     max-width: 1000px;
+    width: 100%;
 }
 
 .hero-text {
-    text-align: left;
+    flex: 1;
+    padding-right: 40px;
 }
 
 .hero-text h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #00bcd4;
+    color: #e0e0e0;
+    line-height: 1.2;
+}
+
+.hero-text .typing {
+    display: inline-block;
+    color: #00bcd4; /* Highlight color for the role */
 }
 
 .hero-text p {
@@ -82,6 +89,7 @@ main {
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #00bcd4;
+    flex-shrink: 0;
 }
 
 .hero-image img {
@@ -182,13 +190,17 @@ footer {
     }
 
     .hero-text {
-        text-align: center;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
     }
 
     .hero-image {
         width: 200px;
         height: 200px;
-        margin-bottom: 20px;
     }
     
     .hero-content h1 {
@@ -201,6 +213,16 @@ footer {
     
     .project-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem; /* Slightly smaller font size for mobile */
+        white-space: normal; /* Allow wrapping on very small screens */
+    }
+
+    .typing {
+        width: auto; /* Allow full width on mobile */
+        text-align: center;
     }
 }
 
