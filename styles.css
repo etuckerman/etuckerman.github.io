@@ -114,3 +114,47 @@ footer {
     background-color: #1f1f1f;
     color: #e0e0e0;
 }
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-section {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.training-grid, .performance-grid, .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.training-chart, .performance-example, .qa-example {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+#loss-chart {
+    height: 300px;
+}
+
+.training-observations ul, .key-achievements ul, .skills-used ul, .key-learnings ul {
+    padding-left: 20px;
+}
+
+.training-observations li, .key-achievements li, .skills-used li, .key-learnings li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .training-grid, .performance-grid, .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
