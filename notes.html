@@ -31,12 +31,41 @@
         document.addEventListener('DOMContentLoaded', function() {
             var svgObject = document.querySelector('.notes-svg');
             svgObject.addEventListener('load', function() {
-                svgPanZoom(svgObject, {
+                var panZoom = svgPanZoom(svgObject, {
                     zoomEnabled: true,
                     controlIconsEnabled: true,
                     fit: true,
                     center: true,
+                    minZoom: 0.1
                 });
+
+                function fitSvgToContainer() {
+                    var svgDoc = svgObject.contentDocument;
+                    if (svgDoc) {
+                        var svg = svgDoc.querySelector('svg');
+                        if (svg) {
+                            var bbox = svg.getBBox();
+                            var containerWidth = svgObject.clientWidth;
+                            var containerHeight = svgObject.clientHeight;
+                            var svgAspectRatio = bbox.width / bbox.height;
+                            var containerAspectRatio = containerWidth / containerHeight;
+
+                            if (svgAspectRatio > containerAspectRatio) {
+                                // SVG is wider than container, fit to width
+                                panZoom.zoom(containerWidth / bbox.width);
+                            } else {
+                                // SVG is taller than container, fit to height
+                                panZoom.zoom(containerHeight / bbox.height);
+                            }
+
+                            panZoom.center();
+                        }
+                    }
+                }
+
+                // Call fitSvgToContainer initially and on window resize
+                fitSvgToContainer();
+                window.addEventListener('resize', fitSvgToContainer);
             });
         });
     </script>
