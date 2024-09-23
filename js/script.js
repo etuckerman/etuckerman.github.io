@@ -34,3 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     type();
 });
+
+// Function to load the common header
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('afterbegin', data);
+        })
+        .catch(error => console.error('Error loading header:', error));
+}
+
+// Call the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', loadHeader);

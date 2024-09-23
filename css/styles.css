@@ -282,7 +282,7 @@ html {
 .view-all {
     display: block;
     width: max-content;
-    margin: 0 auto;
+    margin: 30px auto 0;
 }
 
 /* Individual blog post styles */
@@ -396,4 +396,50 @@ html {
 .notes-svg {
     width: 100%;
     height: 100%;
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: calc(var(--header-height) + 20px);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.project-card {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    color: #00bcd4;
+    margin: 15px;
+}
+
+.project-card p {
+    margin: 0 15px 15px;
+}
+
+.project-card .btn {
+    display: inline-block;
+    margin: 0 15px 15px;
 }
