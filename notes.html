@@ -12,7 +12,7 @@
     <main class="notes-container">
         <h1>Machine Learning & AI Study Notes</h1>
         <p>These are my comprehensive notes from studying the fundamentals of machine learning and AI. Click on the image to zoom in and explore the details.</p>
-        <div class="svg-container">
+        <div class="notes-svg-container">
             <object type="image/svg+xml" data="/images/notes.svg" class="notes-svg">
                 Your browser does not support SVG
             </object>
@@ -28,13 +28,15 @@
     </footer>
 
     <script>
-        // Initialize SVG Pan Zoom
         document.addEventListener('DOMContentLoaded', function() {
-            svgPanZoom('.notes-svg', {
-                zoomEnabled: true,
-                controlIconsEnabled: true,
-                fit: true,
-                center: true,
+            var svgObject = document.querySelector('.notes-svg');
+            svgObject.addEventListener('load', function() {
+                svgPanZoom(svgObject, {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,
+                });
             });
         });
     </script>
