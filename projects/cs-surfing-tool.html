@@ -138,18 +138,17 @@
                     <!-- Brachistochrone curve -->
                     <path id="curve" d="M200,50 Q350,250 750,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
                     
-                    <!-- Stick figure -->
-                    <g id="stickman">
-                        <line x1="0" y1="0" x2="0" y2="30" stroke="var(--primary-color)" stroke-width="2" />
-                        <line x1="-15" y1="15" x2="15" y2="15" stroke="var(--primary-color)" stroke-width="2" />
-                        <circle cx="0" cy="-5" r="5" fill="var(--primary-color)" />
+                    <!-- Velocity vectors -->
+                    <g id="velocity-vectors">
+                        <line id="x-vector" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="2" />
+                        <line id="y-vector" x1="0" y1="0" x2="0" y2="0" stroke="blue" stroke-width="2" />
                     </g>
                 </svg>
                 <div id="velocity-display" style="position: absolute; top: 10px; left: 10px; font-size: 18px; color: var(--primary-color);">
                     Velocity: <span id="velocity-value">0</span>
                 </div>
                 <div id="explanation" style="position: absolute; bottom: 10px; left: 10px; right: 10px; background-color: rgba(var(--bg-color-rgb), 0.8); padding: 10px; border-radius: 5px; font-size: 14px; color: var(--text-color);">
-                    Max velocity: 3500 units/sec (CS:S limit). Logarithmic growth simulates realistic acceleration.
+                    Max velocity: 3500 units/sec (CS:S limit). Logarithmic growth simulates realistic acceleration. Red vector: X velocity, Blue vector: Y velocity.
                 </div>
             </div>
         </section>
@@ -172,8 +171,10 @@
         </style>
         
         <script>
-            function animateStickman() {
-                const stickman = document.getElementById('stickman');
+            function animateVelocityVectors() {
+                const velocityVectors = document.getElementById('velocity-vectors');
+                const xVector = document.getElementById('x-vector');
+                const yVector = document.getElementById('y-vector');
                 const curve = document.getElementById('curve');
                 const velocityValue = document.getElementById('velocity-value');
                 const maxVelocity = 3500;
@@ -189,12 +190,25 @@
                         progress = 0;
                     }
         
-                    const point = curve.getPointAtLength(progress * curve.getTotalLength());
-                    stickman.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+                    const curveLength = curve.getTotalLength();
+                    const point = curve.getPointAtLength(progress * curveLength);
+                    const tangent = curve.getPointAtLength(Math.min((progress + 0.01) * curveLength, curveLength));
+                    
+                    const dx = tangent.x - point.x;
+                    const dy = tangent.y - point.y;
+                    const angle = Math.atan2(dy, dx);
         
-                    // Calculate velocity with logarithmic scaling
-                    const velocity = Math.round(maxVelocity * (1 - Math.exp(-5 * progress)));
-                    velocityValue.textContent = velocity;
+                    const velocity = maxVelocity * (1 - Math.exp(-5 * progress));
+                    const xVelocity = velocity * Math.cos(angle);
+                    const yVelocity = velocity * Math.sin(angle);
+        
+                    const scaleFactor = 0.05; // Adjust this to change vector length
+        
+                    velocityVectors.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+                    xVector.setAttribute('x2', xVelocity * scaleFactor);
+                    yVector.setAttribute('y2', yVelocity * scaleFactor);
+        
+                    velocityValue.textContent = Math.round(velocity);
         
                     requestAnimationFrame(animate);
                 }
@@ -202,7 +216,7 @@
                 requestAnimationFrame(animate);
             }
         
-            window.addEventListener('load', animateStickman);
+            window.addEventListener('load', animateVelocityVectors);
         </script>
 </body>
 </html>
