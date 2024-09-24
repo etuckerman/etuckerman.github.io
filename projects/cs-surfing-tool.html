@@ -128,15 +128,15 @@
             <p>This demo illustrates the optimal path for a CS:S surfer, showcasing how velocity builds up along a brachistochrone curve. The AI tool analyzes similar paths to provide feedback on player technique.</p>
             <div id="surf-animation" style="width:100%; height:400px; perspective: 1000px;">
                 <svg width="100%" height="100%" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
-                    <!-- Left triangle -->
-                    <path d="M50,350 L200,50 L350,350 Z" fill="var(--card-bg)" stroke="var(--text-color)" stroke-width="2" />
-                    <!-- Right triangle (shifted left, without vertical line) -->
-                    <path d="M750,350 L900,350 L750,50" fill="none" stroke="var(--text-color)" stroke-width="2" />
+                    <!-- Left triangle (both faces visible) -->
+                    <path d="M50,350 L200,50 L350,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                    <!-- Right triangle (only right face visible) -->
+                    <path d="M800,50 L950,350" stroke="var(--text-color)" stroke-width="2" />
                     <!-- Joining the tips and bases -->
-                    <path d="M200,50 L750,50" stroke="var(--text-color)" stroke-width="2" fill="none" />
-                    <path d="M50,350 L900,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                    <path d="M200,50 L800,50" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                    <path d="M50,350 L950,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
                     <!-- Brachistochrone curve -->
-                    <path id="curve" d="M200,50 Q350,250 750,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
+                    <path id="curve" d="M200,50 Q500,250 950,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
                     
                     <!-- Velocity vectors -->
                     <g id="velocity-vectors">
