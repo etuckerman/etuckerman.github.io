@@ -111,41 +111,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function getBotResponse(message) {
-        if (message.toLowerCase().includes('feeling like')) {
-            const theme = await predictTheme(message);
-            changeTheme(theme);
-            let response = `I've updated the theme to match your mood: ${theme}`;
-            addMessage('bot', response);
-        } else {
-            let response = 'I can change the theme based on your mood. Try saying "I\'m feeling like..."';
-            addMessage('bot', response);
+        const words = message.toLowerCase().split(' ');
+        
+        if (words.includes('reset')) {
+            changeTheme('cyan'); // Reset to the original cyan color
+            addMessage('bot', "I've reset the theme to the original cyan color!");
+            return;
         }
+        
+        for (let word of words) {
+            const color = detectColorFromWord(word);
+            if (color) {
+                changeTheme(color);
+                addMessage('bot', `I detected the word "${word}" which makes me think of the color ${color}. I've updated the theme to match!`);
+                return;
+            }
+        }
+        
+        // If no color was detected, return the default response
+        addMessage('bot', "I didn't detect any colors in your message. Try mentioning things like 'sun', 'sky', or 'grass', or type 'reset' to reset the theme!");
     }
 
-    function changeTheme(theme) {
-        const root = document.documentElement;
-        switch (theme) {
-            case 'ocean':
-                root.style.setProperty('--bg-color', '#0077be');
-                root.style.setProperty('--primary-color', '#00a86b');
-                break;
-            case 'sunset':
-                root.style.setProperty('--bg-color', '#ff7e5f');
-                root.style.setProperty('--primary-color', '#feb47b');
-                break;
-            case 'forest':
-                root.style.setProperty('--bg-color', '#228B22');
-                root.style.setProperty('--primary-color', '#32CD32');
-                break;
-            case 'night':
-                root.style.setProperty('--bg-color', '#191970');
-                root.style.setProperty('--primary-color', '#4B0082');
-                break;
-            case 'desert':
-                root.style.setProperty('--bg-color', '#DEB887');
-                root.style.setProperty('--primary-color', '#D2691E');
-                break;
-        }
+    function changeTheme(color) {
+        document.documentElement.style.setProperty('--primary-color', color);
+        // You might want to adjust other color variables based on the primary color
+        // For example:
+        // document.documentElement.style.setProperty('--text-color', getContrastColor(color));
+    }
+
+    // Helper function to get a contrasting color (simplified version)
+    function getContrastColor(color) {
+        // This is a simple implementation. For better results, you might want to use a more sophisticated algorithm
+        const rgb = parseInt(color.substr(1), 16);
+        const brightness = ((rgb >> 16) & 255) * 0.299 + 
+                           ((rgb >> 8) & 255) * 0.587 + 
+                           (rgb & 255) * 0.114;
+        return brightness > 186 ? '#000000' : '#FFFFFF';
     }
 
     async function predictTheme(input) {
@@ -164,11 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    function getBotResponse(message) {
-        // Simple bot response logic (currently under maintenance while I implement a new model)
-        let response = 'Currently under maintenance while I implement a new model.';
-        addMessage('bot', response);
-    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -266,4 +262,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function detectColorFromWord(word) {
+    const colorMap = {
+        'sun': 'orange',
+        'sky': 'blue',
+        'grass': 'green',
+        'ocean': 'cyan',
+        'forest': 'darkgreen',
+        'night': 'darkblue',
+        'blood': 'red',
+        'lemon': 'yellow',
+        'grape': 'purple',
+        'cloud': 'white',
+        'coal': 'black'
+    };
+    
+    return colorMap[word.toLowerCase()] || null;
+}
 
