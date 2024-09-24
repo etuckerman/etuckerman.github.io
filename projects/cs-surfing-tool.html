@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:S Surfing AI Tool | Elliot Tuckerman</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1 class="project-title">CS:S Surfing AI Tool</h1>
+    <main class="project-container">
+        <section id="situation" class="project-section">
+            <h2>Situation</h2>
+            <p>Counter-Strike: Source (CS:S) surfing is a popular game mode that requires precise movement and timing. Many players struggle to improve their surfing skills efficiently.</p>
+        </section>
+
+        <section id="task" class="project-section">
+            <h2>Task</h2>
+            <p>Develop an AI-driven tool to analyze and improve surfing techniques in Counter-Strike: Source, helping players enhance their skills more effectively.</p>
+        </section>
+
+        <section id="action" class="project-section">
+            <h2>Action</h2>
+            <ol>
+                <li>Collected and preprocessed surfing gameplay data from expert players.</li>
+                <li>Developed a machine learning model to analyze surfing techniques and patterns.</li>
+                <li>Implemented real-time feedback system for players during gameplay.</li>
+                <li>Created a user-friendly interface for reviewing performance and suggestions.</li>
+            </ol>
+            
+            <h3>Technical Details</h3>
+            <ul>
+                <li>Data Collection: Custom CS:S plugin for recording player movements and inputs</li>
+                <li>Machine Learning Model: Convolutional Neural Network (CNN) for pattern recognition</li>
+                <li>Real-time Analysis: Integration with CS:S game engine for live feedback</li>
+                <li>User Interface: Web-based dashboard for performance review and improvement suggestions</li>
+            </ul>
+
+            <div id="model-architecture-chart"></div>
+        </section>
+
+        <section id="result" class="project-section">
+            <h2>Result</h2>
+            <p>The CS:S Surfing AI Tool has shown significant improvements in players' surfing abilities:</p>
+            
+            <div class="result-stats">
+                <h3>Performance Improvements</h3>
+                <ul>
+                    <li>Average completion time reduction: 15%</li>
+                    <li>Successful run rate increase: 30%</li>
+                    <li>User satisfaction rating: 4.8/5</li>
+                </ul>
+            </div>
+
+            <p>The tool has been well-received by the CS:S surfing community and is being used by both beginners and experienced players to refine their techniques.</p>
+        </section>
+
+        <section id="interactive-demo" class="project-section">
+            <h2>Interactive Demo</h2>
+            <div id="surfing-demo">
+                <canvas id="surfing-canvas" width="600" height="400"></canvas>
+                <div id="demo-controls">
+                    <button id="start-demo">Start Demo</button>
+                    <button id="reset-demo">Reset</button>
+                </div>
+                <div id="ai-feedback"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Model architecture chart
+            var trace = {
+                x: ['Input', 'Conv1D', 'MaxPool', 'Conv1D', 'MaxPool', 'Flatten', 'Dense', 'Output'],
+                y: [64, 128, 64, 256, 128, 64, 32, 8],
+                type: 'bar',
+                marker: {
+                    color: ['#00bcd4', '#4caf50', '#2196f3', '#4caf50', '#2196f3', '#ff9800', '#9c27b0', '#e91e63']
+                }
+            };
+
+            var layout = {
+                title: 'CNN Model Architecture',
+                xaxis: {title: 'Layers'},
+                yaxis: {title: 'Units'},
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                font: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()},
+                margin: {t: 30, b: 40, l: 60, r: 10}
+            };
+
+            Plotly.newPlot('model-architecture-chart', [trace], layout, {responsive: true});
+
+            // Interactive demo
+            const canvas = document.getElementById('surfing-canvas');
+            const ctx = canvas.getContext('2d');
+            const startButton = document.getElementById('start-demo');
+            const resetButton = document.getElementById('reset-demo');
+            const aiFeedback = document.getElementById('ai-feedback');
+
+            let animationId;
+            let playerX = 50;
+            let playerY = 200;
+            let velocity = 0;
+
+            function drawPlayer() {
+                ctx.fillStyle = '#00bcd4';
+                ctx.beginPath();
+                ctx.arc(playerX, playerY, 10, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            function drawSurf() {
+                ctx.strokeStyle = '#4caf50';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, 300);
+                ctx.quadraticCurveTo(300, 100, 600, 300);
+                ctx.stroke();
+            }
+
+            function updatePlayer() {
+                playerX += 2;
+                playerY += velocity;
+                velocity += 0.1;
+
+                if (playerY > 300) {
+                    playerY = 300;
+                    velocity = -velocity * 0.8;
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawSurf();
+                updatePlayer();
+                drawPlayer();
+
+                if (playerX < 600) {
+                    animationId = requestAnimationFrame(animate);
+                } else {
+                    aiFeedback.textContent = "AI Feedback: Great run! Try to maintain a smoother trajectory for even better results.";
+                }
+            }
+
+            startButton.addEventListener('click', function() {
+                cancelAnimationFrame(animationId);
+                playerX = 50;
+                playerY = 200;
+                velocity = 0;
+                aiFeedback.textContent = "";
+                animate();
+            });
+
+            resetButton.addEventListener('click', function() {
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawSurf();
+                playerX = 50;
+                playerY = 200;
+                velocity = 0;
+                aiFeedback.textContent = "";
+                drawPlayer();
+            });
+
+            // Initial draw
+            drawSurf();
+            drawPlayer();
+        });
+    </script>
+</body>
+</html>
