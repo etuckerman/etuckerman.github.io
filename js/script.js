@@ -127,22 +127,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('resume-modal');
     const btn = document.getElementById('resume-btn');
     const span = document.getElementsByClassName('close')[0];
-    const iframe = document.getElementById('resume-iframe');
 
     btn.onclick = function() {
         modal.style.display = 'block';
-        iframe.src = '/resume.pdf';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
     }
 
-    span.onclick = function() {
-        modal.style.display = 'none';
-        iframe.src = '';
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
     }
+
+    span.onclick = closeModal;
 
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = 'none';
-            iframe.src = '';
+            closeModal();
         }
     }
 });
