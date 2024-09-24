@@ -82,13 +82,17 @@ function loadHeader() {
 document.addEventListener('DOMContentLoaded', loadHeader);
 
 document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.getElementById('chatbot');
     const chatbotHeader = document.getElementById('chatbot-header');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
 
     chatbotHeader.addEventListener('click', function() {
-        const chatbot = document.getElementById('chatbot');
         chatbot.classList.toggle('open');
+        if (chatbot.classList.contains('open') && chatbotMessages.children.length === 0) {
+            typeWelcomeMessage();
+            animatePlaceholder();
+        }
     });
 
     chatbotInput.addEventListener('keypress', function(e) {
@@ -102,12 +106,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    function typeWelcomeMessage() {
+        const welcomeMessage = "Welcome to the Theme AI Assistant, type what you are thinking, and I'll match a theme to it!";
+        addMessage('bot', welcomeMessage);
+    }
+
+    function animatePlaceholder() {
+        const placeholders = [
+            "The sun's golden rays warm my face",
+            "A cerulean sky stretches endlessly above",
+            "Emerald blades of grass tickle my toes",
+            "The cyan waters of the Caribbean beckon",
+            "A lush forest canopy surrounds me",
+            "The inky night sky twinkles with stars",
+            "A crimson drop of blood stains the snow",
+            "Zesty lemon scent fills the air",
+            "Juicy grapes burst with flavor",
+            "Fluffy clouds drift lazily by",
+            "Charcoal sketches come to life on paper"
+        ];
+        let i = 0;
+        function changePlaceholder() {
+            chatbotInput.setAttribute('placeholder', placeholders[i]);
+            i = (i + 1) % placeholders.length;
+            setTimeout(() => {
+                chatbotInput.setAttribute('placeholder', '');
+                setTimeout(changePlaceholder, 500);
+            }, 3000); // Increased display time to 3 seconds for easier reading
+        }
+        changePlaceholder();
+    }
+
     function addMessage(sender, text) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
         messageElement.textContent = text;
         chatbotMessages.appendChild(messageElement);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+        // Add a small delay before scrolling to ensure the new message is rendered
+        setTimeout(() => {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }, 100);
     }
 
     async function getBotResponse(message) {
@@ -163,6 +203,11 @@ document.addEventListener('DOMContentLoaded', function() {
         messageElement.textContent = text;
         chatbotMessages.appendChild(messageElement);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+        // Add a small delay before scrolling to ensure the new message is rendered
+        setTimeout(() => {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }, 100);
     }
 
 });
@@ -266,16 +311,26 @@ document.addEventListener('DOMContentLoaded', function() {
 function detectColorFromWord(word) {
     const colorMap = {
         'sun': 'orange',
+        'golden': 'orange',
         'sky': 'blue',
+        'cerulean': 'blue',
         'grass': 'green',
+        'emerald': 'green',
         'ocean': 'cyan',
+        'caribbean': 'cyan',
         'forest': 'darkgreen',
         'night': 'darkblue',
+        'inky': 'darkblue',
         'blood': 'red',
+        'crimson': 'red',
         'lemon': 'yellow',
+        'zesty': 'yellow',
         'grape': 'purple',
+        'juicy': 'purple',
         'cloud': 'white',
-        'coal': 'black'
+        'fluffy': 'white',
+        'coal': 'black',
+        'charcoal': 'black'
     };
     
     return colorMap[word.toLowerCase()] || null;
