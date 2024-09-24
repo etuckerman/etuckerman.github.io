@@ -146,7 +146,7 @@
                     </g>
                 </svg>
                 <div id="momentum-display" style="position: absolute; top: 10px; left: 10px; font-size: 18px; color: var(--primary-color);">
-                    Momentum: <span id="momentum-value">0</span>
+                    Velocity: <span id="momentum-value">0</span>
                 </div>
             </div>
         </section>
@@ -166,7 +166,7 @@
                 const stickman = document.getElementById('stickman');
                 const curve = document.getElementById('curve');
                 const momentumValue = document.getElementById('momentum-value');
-                const maxMomentum = 100;
+                const maxVelocity = 3500;
                 const duration = 4000; // 4 seconds
                 let startTime;
         
@@ -182,9 +182,9 @@
                     const point = curve.getPointAtLength(progress * curve.getTotalLength());
                     stickman.setAttribute('transform', `translate(${point.x}, ${point.y})`);
         
-                    // Calculate momentum
-                    const momentum = Math.round(maxMomentum * (1 - Math.cos(progress * Math.PI)) / 2);
-                    momentumValue.textContent = momentum;
+                    // Calculate velocity with exponential scaling
+                    const velocity = Math.round(maxVelocity * (1 - Math.exp(-5 * progress)));
+                    momentumValue.textContent = velocity;
         
                     requestAnimationFrame(animate);
                 }
