@@ -62,3 +62,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotHeader = document.getElementById('chatbot-header');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+
+    chatbotHeader.addEventListener('click', function() {
+        const chatbot = document.getElementById('chatbot');
+        chatbot.classList.toggle('open');
+    });
+
+    chatbotInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const message = chatbotInput.value;
+            if (message.trim() !== '') {
+                addMessage('user', message);
+                chatbotInput.value = '';
+                getBotResponse(message);
+            }
+        }
+    });
+
+    function addMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = text;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+        // Simple bot response logic (currently under maintenance while I implement a new model)
+        let response = 'Currently under maintenance while I implement a new model.';
+        addMessage('bot', response);
+    }
+});

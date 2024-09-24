@@ -6,6 +6,7 @@
     --text-color: #e0e0e0;
 }
 
+
 html, body {
     overflow-x: hidden;
     width: 100%;
@@ -470,4 +471,41 @@ img {
 #blogs {
     position: relative;
     padding-top: 40px; /* Add some top padding to offset the overlapping arrow */
+}
+
+#chatbot {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chatbot-header {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+#chatbot-input {
+    border: none;
+    padding: 10px;
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 5px;
 }
