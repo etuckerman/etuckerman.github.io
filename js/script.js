@@ -110,6 +110,60 @@ document.addEventListener('DOMContentLoaded', function() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
+    async function getBotResponse(message) {
+        if (message.toLowerCase().includes('feeling like')) {
+            const theme = await predictTheme(message);
+            changeTheme(theme);
+            let response = `I've updated the theme to match your mood: ${theme}`;
+            addMessage('bot', response);
+        } else {
+            let response = 'I can change the theme based on your mood. Try saying "I\'m feeling like..."';
+            addMessage('bot', response);
+        }
+    }
+
+    function changeTheme(theme) {
+        const root = document.documentElement;
+        switch (theme) {
+            case 'ocean':
+                root.style.setProperty('--bg-color', '#0077be');
+                root.style.setProperty('--primary-color', '#00a86b');
+                break;
+            case 'sunset':
+                root.style.setProperty('--bg-color', '#ff7e5f');
+                root.style.setProperty('--primary-color', '#feb47b');
+                break;
+            case 'forest':
+                root.style.setProperty('--bg-color', '#228B22');
+                root.style.setProperty('--primary-color', '#32CD32');
+                break;
+            case 'night':
+                root.style.setProperty('--bg-color', '#191970');
+                root.style.setProperty('--primary-color', '#4B0082');
+                break;
+            case 'desert':
+                root.style.setProperty('--bg-color', '#DEB887');
+                root.style.setProperty('--primary-color', '#D2691E');
+                break;
+        }
+    }
+
+    async function predictTheme(input) {
+        const embeddings = await encoder.embed(input);
+        const prediction = await model.predict(embeddings).data();
+        const themeIndex = prediction.indexOf(Math.max(...prediction));
+        const themes = ['ocean', 'sunset', 'forest', 'night', 'desert'];
+        return themes[themeIndex];
+    }
+
+    function addMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = text;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
     function getBotResponse(message) {
         // Simple bot response logic (currently under maintenance while I implement a new model)
         let response = 'Currently under maintenance while I implement a new model.';
