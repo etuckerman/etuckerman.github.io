@@ -98,3 +98,27 @@ document.addEventListener('DOMContentLoaded', function() {
         addMessage('bot', response);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const qaInput = document.getElementById('qa-input');
+    const qaSubmit = document.getElementById('qa-submit');
+    const qaResponse = document.getElementById('qa-response');
+
+    qaSubmit.addEventListener('click', function() {
+        const question = qaInput.value;
+        if (question.trim() !== '') {
+            getQAResponse(question);
+        }
+    });
+
+    function getQAResponse(question) {
+        // Simple QA response logic (can be replaced with AI model)
+        let response = "I'm not sure about that.";
+        if (question.toLowerCase().includes('jayco eagle')) {
+            response = 'Yes, the Jayco Eagle has 1 queen size bed.';
+        } else if (question.toLowerCase().includes('keystone cougar')) {
+            response = 'The MSRP of the Keystone Cougar is $28,603.';
+        }
+        qaResponse.textContent = response;
+    }
+});

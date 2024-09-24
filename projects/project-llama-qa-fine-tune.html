@@ -121,6 +121,15 @@
 
             <p>The model has been successfully uploaded to Hugging Face Hub and is available for further use and experimentation.</p>
         </section>
+
+        <section id="interactive-demo" class="project-section">
+            <h2>Interactive Demo</h2>
+            <div id="qa-demo">
+                <input type="text" id="qa-input" placeholder="Ask a question about RVs...">
+                <button id="qa-submit">Ask</button>
+                <div id="qa-response"></div>
+            </div>
+        </section>
     </main>
 
     <script>
@@ -143,6 +152,32 @@
             };
 
             Plotly.newPlot('training-loss-chart', [trace], layout, {responsive: true});
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const qaInput = document.getElementById('qa-input');
+            const qaSubmit = document.getElementById('qa-submit');
+            const qaResponse = document.getElementById('qa-response');
+
+            qaSubmit.addEventListener('click', function() {
+                const question = qaInput.value;
+                if (question.trim() !== '') {
+                    getQAResponse(question);
+                }
+            });
+
+            function getQAResponse(question) {
+                // Simple QA response logic (can be replaced with AI model)
+                let response = "I'm not sure about that.";
+                if (question.toLowerCase().includes('jayco eagle')) {
+                    response = 'Yes, the Jayco Eagle has 1 queen size bed.';
+                } else if (question.toLowerCase().includes('keystone cougar')) {
+                    response = 'The MSRP of the Keystone Cougar is $28,603.';
+                }
+                qaResponse.textContent = response;
+            }
         });
     </script>
 </body>
