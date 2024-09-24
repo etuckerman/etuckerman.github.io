@@ -137,6 +137,17 @@
                     <path d="M50,350 L900,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
                     <!-- Brachistochrone curve -->
                     <path id="curve" d="M200,50 Q350,250 750,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
+                    
+                    <!-- Stick figure -->
+                    <g id="stickman">
+                        <line x1="0" y1="0" x2="0" y2="30" stroke="var(--primary-color)" stroke-width="2" />
+                        <line x1="-15" y1="15" x2="15" y2="15" stroke="var(--primary-color)" stroke-width="2" />
+                        <circle cx="0" cy="-5" r="5" fill="var(--primary-color)" />
+                        
+                        <animateMotion dur="4s" repeatCount="indefinite">
+                            <mpath href="#curve"/>
+                        </animateMotion>
+                    </g>
                 </svg>
             </div>
         </section>
