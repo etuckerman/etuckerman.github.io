@@ -1,38 +1,71 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Typing animation
     const typingElement = document.querySelector('.typing');
     const roles = ["Elliot Tuckerman", "a Machine Learning Engineer", "a Data Scientist", "a Game Developer"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const delayBetweenRoles = 2000;
 
     function type() {
         const currentRole = roles[roleIndex];
         if (isDeleting) {
-            typingElement.innerHTML = currentRole.substring(0, charIndex - 1);
+            typingElement.textContent = currentRole.substring(0, charIndex - 1);
             charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(type, typingSpeed);
-            } else {
-                setTimeout(type, deletingSpeed);
-            }
         } else {
-            typingElement.innerHTML = currentRole.substring(0, charIndex + 1);
+            typingElement.textContent = currentRole.substring(0, charIndex + 1);
             charIndex++;
-            if (charIndex === currentRole.length) {
-                isDeleting = true;
-                setTimeout(type, delayBetweenRoles);
-            } else {
-                setTimeout(type, typingSpeed);
-            }
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(type, 100);
+        } else {
+            setTimeout(type, isDeleting ? 50 : 100);
         }
     }
 
     type();
+
+    // Scroll functionality
+    document.querySelectorAll('.scroll-arrow').forEach(arrow => {
+        arrow.addEventListener('click', function() {
+            const nextSection = this.closest('section').nextElementSibling;
+            if (nextSection) {
+                const offset = -10; // Adjust this value to scroll slightly lower
+                const targetPosition = nextSection.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Resume modal
+    const modal = document.getElementById('resume-modal');
+    const btn = document.getElementById('resume-btn');
+    const span = document.querySelector('.close');
+
+    btn.onclick = () => {
+        modal.style.display = 'block';
+        setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+
+    span.onclick = closeModal;
+    window.onclick = (event) => {
+        if (event.target == modal) closeModal();
+    }
+
+    // Other functionality (chatbot, QA) remains the same...
 });
 
 // Function to load the common header
@@ -47,21 +80,6 @@ function loadHeader() {
 
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadHeader);
-
-document.addEventListener('DOMContentLoaded', function() {
-    const scrollArrows = document.querySelectorAll('.scroll-arrow');
-    
-    scrollArrows.forEach(arrow => {
-        arrow.addEventListener('click', function() {
-            const currentSection = this.closest('section');
-            const nextSection = currentSection.nextElementSibling;
-            
-            if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const chatbotHeader = document.getElementById('chatbot-header');
@@ -150,3 +168,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+

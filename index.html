@@ -9,6 +9,14 @@
     <script src="/js/script.js" defer></script>
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
     <main>
         <section id="hero">
             <div class="hero-content">
@@ -38,23 +46,18 @@
                 <div class="key-info-box">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>First Class Honours</h3>
-                    <p>BSc Computer Science</p>
+                    <p>BSc Computer Science <span class="flag uk-flag">🇬🇧</span></p>
                 </div>
                 <div class="key-info-box">
-                    <i class="fas fa-code"></i>
-                    <h3>Machine Learning Engineer</h3>
-                    <p>Specializing in NLP & LLMs</p>
+                    <i class="fas fa-award"></i>
+                    <h3>4.0 GPA</h3>
+                    <p>US Equivalent <span class="flag us-flag">🇺🇸</span></p>
                 </div>
                 <div class="key-info-box">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3>UK to USA</h3>
-                    <p>Green Card Holder</p>
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Game Developer</h3>
+                    <p>Unity & Unreal Engine</p>
                 </div>
-            </div>
-            <div class="scroll-arrow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                </svg>
             </div>
         </section>
 
@@ -76,7 +79,6 @@
                                     <li>First Class Honours (4.0 / 4.0 GPA)</li>
                                     <li>Specialized in supervised and unsupervised machine learning algorithms</li>
                                     <li>Used data visualization to analyze and present data to teams</li>
-
                                 </ul>
                             </div>
                             <div class="university-logo">
@@ -102,11 +104,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="scroll-arrow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                </svg>
+                <!-- Fancy Page Down Arrow moved to the bottom of About section -->
+                <div class="scroll-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </div>
             </div>
         </section>
 
@@ -141,13 +144,6 @@
                 </div>
             </div>
             <a href="/projects.html" class="btn view-all">View All Projects</a>
-            
-            <!-- Add this new scroll arrow -->
-            <div class="scroll-arrow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                </svg>
-            </div>
         </section>
 
         <section id="blogs">
