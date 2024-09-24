@@ -158,7 +158,9 @@
                     Velocity: <span id="velocity-value">0</span>
                 </div>
                 <div id="explanation" style="position: absolute; bottom: 10px; left: 10px; right: 10px; background-color: rgba(var(--bg-color-rgb), 0.8); padding: 10px; border-radius: 5px; font-size: 14px; color: var(--text-color);">
-                    Max velocity: 3500 units/sec (CS:S limit). Logarithmic growth simulates realistic acceleration. Red vector: X velocity, Blue vector: Y velocity.
+                    Max velocity: 3500 units/sec (CS:S limit). Logarithmic growth simulates realistic acceleration. 
+                    <span style="color: red;">Red vector: X velocity</span>, 
+                    <span style="color: blue;">Blue vector: Y velocity</span>.
                 </div>
             </div>
         </section>
@@ -202,15 +204,15 @@
         
                     const curveLength = curve.getTotalLength();
                     const point = curve.getPointAtLength(progress * curveLength);
-                    const tangent = curve.getPointAtLength(Math.min((progress + 0.01) * curveLength, curveLength));
-                    
-                    const dx = tangent.x - point.x;
-                    const dy = tangent.y - point.y;
-                    const angle = Math.atan2(dy, dx);
         
-                    const velocity = maxVelocity * (1 - Math.exp(-5 * progress));
-                    const xVelocity = velocity * Math.cos(angle);
-                    const yVelocity = velocity * Math.sin(angle);
+                    // Calculate velocity components
+                    const totalVelocity = maxVelocity * (1 - Math.exp(-5 * progress));
+                    
+                    // Y velocity starts high and decreases, but never reaches zero
+                    const yVelocity = maxVelocity * (0.8 * Math.exp(-3 * progress) + 0.2);
+                    
+                    // X velocity starts at medium value and increases
+                    const xVelocity = maxVelocity * (0.4 + 0.6 * (1 - Math.exp(-3 * progress)));
         
                     const scaleFactor = 0.05; // Adjust this to change vector length
         
@@ -218,7 +220,7 @@
                     xVector.setAttribute('x2', xVelocity * scaleFactor);
                     yVector.setAttribute('y2', yVelocity * scaleFactor);
         
-                    velocityValue.textContent = Math.round(velocity);
+                    velocityValue.textContent = Math.round(totalVelocity);
         
                     requestAnimationFrame(animate);
                 }
