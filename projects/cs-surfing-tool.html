@@ -143,12 +143,11 @@
                         <line x1="0" y1="0" x2="0" y2="30" stroke="var(--primary-color)" stroke-width="2" />
                         <line x1="-15" y1="15" x2="15" y2="15" stroke="var(--primary-color)" stroke-width="2" />
                         <circle cx="0" cy="-5" r="5" fill="var(--primary-color)" />
-                        
-                        <animateMotion dur="4s" repeatCount="indefinite">
-                            <mpath href="#curve"/>
-                        </animateMotion>
                     </g>
                 </svg>
+                <div id="momentum-display" style="position: absolute; top: 10px; left: 10px; font-size: 18px; color: var(--primary-color);">
+                    Momentum: <span id="momentum-value">0</span>
+                </div>
             </div>
         </section>
         
@@ -158,17 +157,42 @@
                 border: 1px solid var(--text-color);
                 border-radius: 8px;
                 overflow: hidden;
+                position: relative;
             }
         </style>
-
-    <script>
-        function initAnimation() {
-            const player = document.getElementById('player');
-            const curve = document.getElementById('curve');
-            player.style.offsetPath = `path('${curve.getAttribute('d')}')`;
-        }
-
-        window.addEventListener('load', initAnimation);
-    </script>
+        
+        <script>
+            function animateStickman() {
+                const stickman = document.getElementById('stickman');
+                const curve = document.getElementById('curve');
+                const momentumValue = document.getElementById('momentum-value');
+                const maxMomentum = 100;
+                const duration = 4000; // 4 seconds
+                let startTime;
+        
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    let progress = (currentTime - startTime) / duration;
+        
+                    if (progress > 1) {
+                        startTime = currentTime;
+                        progress = 0;
+                    }
+        
+                    const point = curve.getPointAtLength(progress * curve.getTotalLength());
+                    stickman.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+        
+                    // Calculate momentum
+                    const momentum = Math.round(maxMomentum * (1 - Math.cos(progress * Math.PI)) / 2);
+                    momentumValue.textContent = momentum;
+        
+                    requestAnimationFrame(animate);
+                }
+        
+                requestAnimationFrame(animate);
+            }
+        
+            window.addEventListener('load', animateStickman);
+        </script>
 </body>
 </html>
