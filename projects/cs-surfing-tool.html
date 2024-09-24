@@ -13,29 +13,57 @@
     <main class="project-container">
         <section id="situation" class="project-section">
             <h2>Situation</h2>
-            <p>Counter-Strike: Source (CS:S) surfing is a popular game mode that requires precise movement and timing. Many players struggle to improve their surfing skills efficiently.</p>
+            <p>As a well-known top player in the Counter-Strike: Source (CS:S) surfing community (known as TUCKS), I've set numerous world records and frequently coach new players. However, with a recent surge in player count, it became impossible to manually guide every newcomer individually.</p>
+            <div class="video-links">
+                <h3>Some of my World Record Runs</h3>
+                <div class="video-grid">
+                    <a href="https://www.youtube.com/watch?v=SBuUyclEi8s" target="_blank" class="video-link">
+                        <img src="../images/utopia_thumbnail.jpg" alt="World Record Run 1">
+                        <span class="video-title">World Record on Map 1</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=pE2328-O6pI" target="_blank" class="video-link">
+                        <img src="../images/tendies_thumbnail.jpg" alt="World Record Run 2">
+                        <span class="video-title">World Record on Map 2</span>
+                    </a>
+                    <!-- Add more video links as needed -->
+                </div>
+            </div>
         </section>
 
         <section id="task" class="project-section">
             <h2>Task</h2>
-            <p>Develop an AI-driven tool to analyze and improve surfing techniques in Counter-Strike: Source, helping players enhance their skills more effectively.</p>
+            <p>Develop AI-driven tools to assist new players in improving their surfing skills and to answer common questions about CS:S surfing techniques. The goal was to create a scalable solution that could provide instant guidance to the growing community.</p>
         </section>
 
         <section id="action" class="project-section">
             <h2>Action</h2>
-            <ol>
-                <li>Collected and preprocessed surfing gameplay data from expert players.</li>
-                <li>Developed a machine learning model to analyze surfing techniques and patterns.</li>
-                <li>Implemented real-time feedback system for players during gameplay.</li>
-                <li>Created a user-friendly interface for reviewing performance and suggestions.</li>
-            </ol>
+            <p>I developed two interconnected AI tools to address the community's needs:</p>
             
+            <h3>1. Surfing Chatbot</h3>
+            <ul>
+                <li>Created a custom Discord scraper to collect chat data from the KSF community Discord.</li>
+                <li>Preprocessed and cleaned the collected data to create a high-quality training dataset.</li>
+                <li>Developed and trained a natural language processing model to understand and respond to surfing-related queries.</li>
+                <li>Implemented the chatbot with a user-friendly interface for easy access by new players.</li>
+            </ul>
+
+            <h3>2. Surfing Optimization Tool</h3>
+            <ul>
+                <li>Collected gameplay data and footage from both world record runs and typical player runs.</li>
+                <li>Developed a computer vision model to analyze surfing techniques from gameplay footage.</li>
+                <li>Created a data processing pipeline to extract relevant metrics from gameplay data.</li>
+                <li>Implemented a comparison algorithm to identify areas for improvement by comparing player runs to world record runs.</li>
+                <li>Designed a feedback system to provide actionable insights to players for optimizing their runs.</li>
+            </ul>
+
             <h3>Technical Details</h3>
             <ul>
-                <li>Data Collection: Custom CS:S plugin for recording player movements and inputs</li>
-                <li>Machine Learning Model: Convolutional Neural Network (CNN) for pattern recognition</li>
-                <li>Real-time Analysis: Integration with CS:S game engine for live feedback</li>
-                <li>User Interface: Web-based dashboard for performance review and improvement suggestions</li>
+                <li>Discord Scraper: Custom Python script using Discord API</li>
+                <li>Chatbot Model: BERT-based model fine-tuned on surfing community data</li>
+                <li>Computer Vision: CNN for analyzing player movements and techniques</li>
+                <li>Data Processing: Python with NumPy and Pandas for metric extraction and analysis</li>
+                <li>Optimization Algorithm: Custom algorithm comparing run metrics and identifying improvement areas</li>
+                <li>User Interface: Web-based dashboard for both chatbot and optimization tool</li>
             </ul>
 
             <div id="model-architecture-chart"></div>
@@ -43,23 +71,29 @@
 
         <section id="result" class="project-section">
             <h2>Result</h2>
-            <p>The CS:S Surfing AI Tool has shown significant improvements in players' surfing abilities:</p>
+            <p>The CS:S Surfing AI Tools have significantly improved the learning experience for new players and helped intermediate players optimize their techniques:</p>
             
             <div class="result-stats">
                 <h3>Performance Improvements</h3>
                 <ul>
-                    <li>Average completion time reduction: 15%</li>
-                    <li>Successful run rate increase: 30%</li>
-                    <li>User satisfaction rating: 4.8/5</li>
+                    <li>*still gathering data on this one</li>
                 </ul>
             </div>
 
-            <p>The tool has been well-received by the CS:S surfing community and is being used by both beginners and experienced players to refine their techniques.</p>
+            <p>The tools have been widely adopted by the CS:S surfing community, allowing new players to get instant guidance and experienced players to fine-tune their techniques. This has led to a more engaged and skilled player base, contributing to the growth and competitiveness of the surfing community.</p>
         </section>
 
         <section id="interactive-demo" class="project-section">
             <h2>Interactive Demo</h2>
             <div id="surfing-demo">
+                <h3>Surfing Chatbot Demo</h3>
+                <div id="chatbot-demo">
+                    <div id="chat-messages"></div>
+                    <input type="text" id="chat-input" placeholder="Ask a surfing question...">
+                    <button id="send-message">Send</button>
+                </div>
+
+                <h3>Surfing Optimization Tool Demo</h3>
                 <canvas id="surfing-canvas" width="600" height="400"></canvas>
                 <div id="demo-controls">
                     <button id="start-demo">Start Demo</button>
@@ -71,104 +105,48 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Model architecture chart
-            var trace = {
-                x: ['Input', 'Conv1D', 'MaxPool', 'Conv1D', 'MaxPool', 'Flatten', 'Dense', 'Output'],
-                y: [64, 128, 64, 256, 128, 64, 32, 8],
-                type: 'bar',
-                marker: {
-                    color: ['#00bcd4', '#4caf50', '#2196f3', '#4caf50', '#2196f3', '#ff9800', '#9c27b0', '#e91e63']
-                }
-            };
+        // JavaScript for the interactive demo and charts will go here
+        // (Keep the existing JavaScript and add the following for the chatbot demo)
 
-            var layout = {
-                title: 'CNN Model Architecture',
-                xaxis: {title: 'Layers'},
-                yaxis: {title: 'Units'},
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                font: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()},
-                margin: {t: 30, b: 40, l: 60, r: 10}
-            };
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-message');
 
-            Plotly.newPlot('model-architecture-chart', [trace], layout, {responsive: true});
+        function addMessage(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
 
-            // Interactive demo
-            const canvas = document.getElementById('surfing-canvas');
-            const ctx = canvas.getContext('2d');
-            const startButton = document.getElementById('start-demo');
-            const resetButton = document.getElementById('reset-demo');
-            const aiFeedback = document.getElementById('ai-feedback');
-
-            let animationId;
-            let playerX = 50;
-            let playerY = 200;
-            let velocity = 0;
-
-            function drawPlayer() {
-                ctx.fillStyle = '#00bcd4';
-                ctx.beginPath();
-                ctx.arc(playerX, playerY, 10, 0, Math.PI * 2);
-                ctx.fill();
+        function getBotResponse(message) {
+            // Simple bot response logic (replace with actual AI responses)
+            if (message.toLowerCase().includes('how to start')) {
+                return "To start surfing in CS:S, join a surf server and practice maintaining your speed on the ramps. Start with easier maps and gradually move to more challenging ones.";
+            } else if (message.toLowerCase().includes('improve speed')) {
+                return "To improve your speed, focus on smooth mouse movements, proper air strafing, and efficient ramp transitions. Watch top players' demos and try to mimic their techniques.";
+            } else {
+                return "I'm not sure about that specific topic. Could you try asking something about starting surfing or improving your speed?";
             }
+        }
 
-            function drawSurf() {
-                ctx.strokeStyle = '#4caf50';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(0, 300);
-                ctx.quadraticCurveTo(300, 100, 600, 300);
-                ctx.stroke();
+        sendButton.addEventListener('click', function() {
+            const message = chatInput.value;
+            if (message.trim() !== '') {
+                addMessage('user', message);
+                chatInput.value = '';
+                setTimeout(() => {
+                    const response = getBotResponse(message);
+                    addMessage('bot', response);
+                }, 500);
             }
+        });
 
-            function updatePlayer() {
-                playerX += 2;
-                playerY += velocity;
-                velocity += 0.1;
-
-                if (playerY > 300) {
-                    playerY = 300;
-                    velocity = -velocity * 0.8;
-                }
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendButton.click();
             }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawSurf();
-                updatePlayer();
-                drawPlayer();
-
-                if (playerX < 600) {
-                    animationId = requestAnimationFrame(animate);
-                } else {
-                    aiFeedback.textContent = "AI Feedback: Great run! Try to maintain a smoother trajectory for even better results.";
-                }
-            }
-
-            startButton.addEventListener('click', function() {
-                cancelAnimationFrame(animationId);
-                playerX = 50;
-                playerY = 200;
-                velocity = 0;
-                aiFeedback.textContent = "";
-                animate();
-            });
-
-            resetButton.addEventListener('click', function() {
-                cancelAnimationFrame(animationId);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawSurf();
-                playerX = 50;
-                playerY = 200;
-                velocity = 0;
-                aiFeedback.textContent = "";
-                drawPlayer();
-            });
-
-            // Initial draw
-            drawSurf();
-            drawPlayer();
         });
     </script>
 </body>
