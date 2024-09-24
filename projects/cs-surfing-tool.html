@@ -126,15 +126,25 @@
         <section id="interactive-demo" class="project-section">
             <h2>Interactive Demo</h2>
             <p>This demo illustrates the optimal path for a CS:S surfer, showcasing how velocity builds up along a brachistochrone curve. The AI tool analyzes similar paths to provide feedback on player technique.</p>
-            <div id="surf-animation" style="width:100%; height:400px; perspective: 1000px;">
-                <svg width="100%" height="100%" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
-                    <!-- Left triangle (both faces visible) -->
-                    <path d="M50,350 L200,50 L350,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
-                    <!-- Right triangle (only right face visible) -->
+            <div id="surf-animation" style="width:100%; height:500px; perspective: 1000px;">
+                <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="rampGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:var(--card-bg);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:var(--text-color);stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Left triangle (3D effect) -->
+                    <path d="M50,350 L200,50 L350,350 Z" fill="url(#rampGradient)" stroke="var(--text-color)" stroke-width="2" />
+                    <path d="M50,350 L200,50" stroke="var(--text-color)" stroke-width="2" stroke-dasharray="5,5" />
+                    <!-- Right triangle (3D effect, only right face visible) -->
                     <path d="M800,50 L950,350" stroke="var(--text-color)" stroke-width="2" />
-                    <!-- Joining the tips and bases -->
+                    <!-- Joining the tips and bases with perspective -->
                     <path d="M200,50 L800,50" stroke="var(--text-color)" stroke-width="2" fill="none" />
                     <path d="M50,350 L950,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                    <!-- Corrected underneath part -->
+                    <path d="M50,350 L50,380 L350,380 L350,350" fill="var(--card-bg)" stroke="var(--text-color)" stroke-width="1" opacity="0.5" />
+                    <path d="M350,350 L350,380 L950,380 L950,350" fill="var(--card-bg)" stroke="var(--text-color)" stroke-width="1" opacity="0.3" />
                     <!-- Brachistochrone curve -->
                     <path id="curve" d="M200,50 Q500,250 950,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
                     
