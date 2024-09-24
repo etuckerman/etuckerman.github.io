@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotHeader = document.getElementById('chatbot-header');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
+    const typingIndicator = document.getElementById('typing-indicator');
 
     chatbotHeader.addEventListener('click', function() {
         chatbot.classList.toggle('open');
@@ -95,13 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    chatbotInput.addEventListener('keypress', function(e) {
+    chatbotInput.addEventListener('keypress', async function(e) {
         if (e.key === 'Enter') {
             const message = chatbotInput.value;
             if (message.trim() !== '') {
                 addMessage('user', message);
                 chatbotInput.value = '';
-                getBotResponse(message);
+                await getBotResponse(message);
             }
         }
     });
@@ -150,11 +151,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
 
+    function showTypingIndicator() {
+        typingIndicator.style.display = 'block';
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        typingIndicator.style.display = 'none';
+    }
+
     async function getBotResponse(message) {
+        showTypingIndicator();
+        
+        // Simulate bot thinking time
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        hideTypingIndicator();
+
         const words = message.toLowerCase().split(' ');
         
         if (words.includes('reset')) {
-            changeTheme('cyan'); // Reset to the original cyan color
+            changeTheme('cyan');
             addMessage('bot', "I've reset the theme to the original cyan color!");
             return;
         }
@@ -168,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // If no color was detected, return the default response
         addMessage('bot', "I didn't detect any colors in your message. Try mentioning things like 'sun', 'sky', or 'grass', or type 'reset' to reset the theme!");
     }
 
