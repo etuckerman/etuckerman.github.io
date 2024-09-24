@@ -47,7 +47,48 @@
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
+        .video-links {
+            margin-top: 20px;
+        }
+
+        .video-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .video-link {
+            flex-basis: calc(50% - 10px);
+            max-width: calc(50% - 10px);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-link img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .video-title {
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            margin-top: auto;
+            padding: 20px;
+            word-wrap: break-word;
+        }
     </style>
+
 </head>
 <body>
     <h1 class="project-title">CS:S Surfing AI Tool</h1>
