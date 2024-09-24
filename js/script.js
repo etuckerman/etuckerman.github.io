@@ -169,3 +169,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var svgObject = document.querySelector('.notes-svg');
+    svgObject.addEventListener('load', function() {
+        var svgDoc = svgObject.contentDocument;
+        var svgElement = svgDoc.documentElement;
+        
+        var panZoom = svgPanZoom(svgElement, {
+            zoomEnabled: true,
+            controlIconsEnabled: true,
+            fit: 'width',
+            center: true,
+            minZoom: 0.1,
+            maxZoom: 20,
+            zoomScaleSensitivity: 0.3,
+        });
+
+        // Set initial zoom to fit the SVG width and then zoom out slightly
+        panZoom.fit();
+        panZoom.center();
+        
+        // Zoom out to 90% of the fitted view
+        var zoomLevel = panZoom.getZoom() * 0.9;
+        panZoom.zoom(zoomLevel);
+
+        // Add custom zoom controls
+        document.getElementById('zoom-in').addEventListener('click', function() { panZoom.zoomIn() });
+        document.getElementById('zoom-out').addEventListener('click', function() { panZoom.zoomOut() });
+        document.getElementById('reset').addEventListener('click', function() { 
+            panZoom.resetZoom();
+            panZoom.fit();
+            panZoom.center();
+            // Apply the 90% zoom after resetting
+            panZoom.zoom(panZoom.getZoom() * 0.9);
+        });
+
+        // Adjust zoom on window resize
+        window.addEventListener('resize', function() {
+            panZoom.fit();
+            panZoom.center();
+            panZoom.zoom(panZoom.getZoom() * 0.9);
+        });
+    });
+});
+
