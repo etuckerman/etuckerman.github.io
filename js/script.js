@@ -47,3 +47,18 @@ function loadHeader() {
 
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadHeader);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArrows = document.querySelectorAll('.scroll-arrow');
+    
+    scrollArrows.forEach(arrow => {
+        arrow.addEventListener('click', function() {
+            const currentSection = this.closest('section');
+            const nextSection = currentSection.nextElementSibling;
+            
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});

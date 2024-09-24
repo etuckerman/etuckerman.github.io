@@ -75,6 +75,7 @@ section {
     margin-bottom: 60px;
     padding-top: var(--header-height);
     margin-top: calc(-1 * var(--header-height));
+    position: relative;
 }
 
 h2 {
@@ -416,4 +417,31 @@ html {
 img {
     max-width: 100%;
     height: auto;
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary-color);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
 }
