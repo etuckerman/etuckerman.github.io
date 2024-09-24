@@ -458,5 +458,16 @@ img {
 
 #projects {
     position: relative;
-    padding-top: 0px; /* Add some top padding to offset the overlapping arrow */
+    padding-top: 40px; /* Keep this from previous adjustment */
+    padding-bottom: 60px; /* Add some bottom padding for the arrow */
+}
+
+#projects .scroll-arrow {
+    bottom: -20px; /* Position it below the section */
+    z-index: 10;
+}
+
+#blogs {
+    position: relative;
+    padding-top: 40px; /* Add some top padding to offset the overlapping arrow */
 }
