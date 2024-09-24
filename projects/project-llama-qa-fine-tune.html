@@ -7,22 +7,72 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/script.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            padding-top: var(--header-height); /* Add padding to account for fixed header */
+        }
+        .project-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .project-title {
+            color: var(--primary-color);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 0;
+            background-color: var(--bg-color);
+        }
+        .project-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .project-section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .qa-pair {
+            background-color: var(--bg-color);
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #training-loss-chart {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
+    <h1 class="project-title">LLaMA 3.1 Fine-Tuning for RV Q&A</h1>
     <main class="project-container">
-        <h1>LLaMA 3.1 Fine-Tuning for RV Q&A</h1>
-        
-        <section id="situation">
+        <section id="situation" class="project-section">
             <h2>Situation</h2>
             <p>The recreational vehicle (RV) market lacks an efficient, AI-powered question-answering system to provide quick and accurate information about various RV models.</p>
         </section>
 
-        <section id="task">
+        <section id="task" class="project-section">
             <h2>Task</h2>
             <p>Develop a specialized AI model capable of answering detailed questions about different RV models, including specifications, features, and pricing.</p>
         </section>
 
-        <section id="action">
+        <section id="action" class="project-section">
             <h2>Action</h2>
             <ol>
                 <li>Prepared a dataset of RV-specific questions and answers.</li>
@@ -34,17 +84,19 @@
             <h3>Training Configuration</h3>
             <ul>
                 <li>Model: LLaMA 3.1 70B Instruct</li>
-                <li>Max Sequence Length: 2048 tokens</li>
-                <li>LoRA rank: 16</li>
-                <li>Training Steps: 60</li>
-                <li>Batch Size: 2 (8 with gradient accumulation)</li>
+                <li>Library: Unsloth</li>
+                <li>Fine-tuning Method: LoRA</li>
+                <li>Dataset Size: 16 examples</li>
+                <li>Batch Size: 2</li>
+                <li>Gradient Accumulation Steps: 4</li>
                 <li>Learning Rate: 2e-4</li>
+                <li>Training Steps: 60</li>
             </ul>
 
             <div id="training-loss-chart"></div>
         </section>
 
-        <section id="result">
+        <section id="result" class="project-section">
             <h2>Result</h2>
             <p>The fine-tuned model demonstrates impressive capabilities in answering RV-specific questions:</p>
             
@@ -58,7 +110,6 @@
                     <p><strong>Q: What is the MSRP of the Keystone Cougar?</strong></p>
                     <p>A: The MSRP of the Keystone Cougar is $28,603.</p>
                 </div>
-                <!-- Add more Q&A pairs here -->
             </div>
 
             <h3>Performance Metrics</h3>
@@ -73,24 +124,26 @@
     </main>
 
     <script>
-        // Training loss chart
-        var trace = {
-            x: [1, 10, 20, 30, 40, 50, 60],
-            y: [2.586600, 0.467600, 0.243600, 0.133300, 0.072500, 0.068600, 0.069200],
-            type: 'scatter'
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            var trace = {
+                x: [1, 10, 20, 30, 40, 50, 60],
+                y: [2.586600, 0.467600, 0.243600, 0.133300, 0.072500, 0.068600, 0.069200],
+                type: 'scatter',
+                mode: 'lines+markers'
+            };
 
-        var layout = {
-            title: 'Training Loss Over Time',
-            xaxis: {title: 'Step'},
-            yaxis: {title: 'Loss'},
-            plot_bgcolor: '#2a2a2a',
-            paper_bgcolor: '#2a2a2a',
-            font: {color: '#e0e0e0'},
-            margin: {t: 30, b: 40, l: 60, r: 10}
-        };
+            var layout = {
+                title: 'Training Loss Over Time',
+                xaxis: {title: 'Step'},
+                yaxis: {title: 'Loss'},
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                font: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()},
+                margin: {t: 30, b: 40, l: 60, r: 10}
+            };
 
-        Plotly.newPlot('training-loss-chart', [trace], layout, {responsive: true});
+            Plotly.newPlot('training-loss-chart', [trace], layout, {responsive: true});
+        });
     </script>
 </body>
 </html>
