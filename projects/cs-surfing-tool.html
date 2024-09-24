@@ -7,15 +7,56 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/script.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            padding-top: var(--header-height);
+        }
+        .project-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .project-title {
+            color: var(--primary-color);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 0;
+            background-color: var(--bg-color);
+        }
+        .project-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .project-section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
     <h1 class="project-title">CS:S Surfing AI Tool</h1>
     <main class="project-container">
         <section id="situation" class="project-section">
             <h2>Situation</h2>
-            <p>As a well-known top player in the Counter-Strike: Source (CS:S) surfing community (known as TUCKS), I've set numerous world records and frequently coach new players. However, with a recent surge in player count, it became impossible to manually guide every newcomer individually.</p>
+            <p>As a well-known top player in the Counter-Strike: Source (CS:S) surfing community, I've set numerous world records and frequently coach new players. However, with a recent surge in player count, it became impossible to manually guide every newcomer individually.</p>
             <div class="video-links">
-                <h3>Some of my World Record Runs</h3>
+                <h3>Some of my World Record Runs for context on the game:</h3>
                 <div class="video-grid">
                     <a href="https://www.youtube.com/watch?v=SBuUyclEi8s" target="_blank" class="video-link">
                         <img src="../images/utopia_thumbnail.jpg" alt="World Record Run 1">
@@ -25,7 +66,6 @@
                         <img src="../images/tendies_thumbnail.jpg" alt="World Record Run 2">
                         <span class="video-title">World Record on Tendies</span>
                     </a>
-                    <!-- Add more video links as needed -->
                 </div>
             </div>
         </section>
@@ -106,48 +146,6 @@
 
     <script>
         // JavaScript for the interactive demo and charts will go here
-        // (Keep the existing JavaScript and add the following for the chatbot demo)
-
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const sendButton = document.getElementById('send-message');
-
-        function addMessage(sender, text) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = text;
-            chatMessages.appendChild(messageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function getBotResponse(message) {
-            // Simple bot response logic (replace with actual AI responses)
-            if (message.toLowerCase().includes('how to start')) {
-                return "To start surfing in CS:S, join a surf server and practice maintaining your speed on the ramps. Start with easier maps and gradually move to more challenging ones.";
-            } else if (message.toLowerCase().includes('improve speed')) {
-                return "To improve your speed, focus on smooth mouse movements, proper air strafing, and efficient ramp transitions. Watch top players' demos and try to mimic their techniques.";
-            } else {
-                return "I'm not sure about that specific topic. Could you try asking something about starting surfing or improving your speed?";
-            }
-        }
-
-        sendButton.addEventListener('click', function() {
-            const message = chatInput.value;
-            if (message.trim() !== '') {
-                addMessage('user', message);
-                chatInput.value = '';
-                setTimeout(() => {
-                    const response = getBotResponse(message);
-                    addMessage('bot', response);
-                }, 500);
-            }
-        });
-
-        chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendButton.click();
-            }
-        });
     </script>
 </body>
 </html>

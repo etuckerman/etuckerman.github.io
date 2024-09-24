@@ -1,3 +1,4 @@
+
 :root {
     --header-height: 60px;
     --primary-color: #00bcd4;
@@ -141,13 +142,13 @@ h2 {
 }
 
 .hero-image {
-    flex: 0 0 auto; /* Prevents flexbox from squishing the image */
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 300px;  /* Adjust as needed */
-    height: 300px; /* Adjust as needed */
+    width: 300px;
+    height: 300px;
 }
 
 .hero-image::before {
@@ -158,7 +159,7 @@ h2 {
     right: -10px;
     bottom: -10px;
     border-radius: 50%;
-    border: 4px solid var(--primary-color); /* Use your site's primary color variable */
+    border: 4px solid var(--primary-color);
 }
 
 .hero-image img {
@@ -369,7 +370,7 @@ html {
 
 .project-card object {
     width: 100%;
-    height: 200px; /* Adjust this value as needed */
+    height: 200px;
 }
 
 .project-card object svg {
@@ -384,18 +385,18 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: calc(20px + var(--header-height)); /* Add this line */
+    padding-top: calc(20px + var(--header-height));
 }
 
 .notes-svg-container {
     width: 100%;
-    height: 300vh; /* This sets the height to 80% of the viewport height */
+    height: 300vh;
     position: relative;
     overflow: hidden;
     border: 1px solid #ccc;
     margin-top: 20px;
-    display: flex; /* Add this */
-    flex-direction: column; /* Add this */
+    display: flex;
+    flex-direction: column;
     padding-top: 0;
     margin-top: 0;
 }
@@ -406,8 +407,8 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Add this */
-    object-position: top; /* Add this */
+    object-fit: contain;
+    object-position: top;
 }
 
 .notes-container h1 {
@@ -448,28 +449,28 @@ img {
 
 #about {
     position: relative;
-    padding-bottom: 60px; /* Keep this padding to maintain space */
+    padding-bottom: 60px;
 }
 
 #about .scroll-arrow {
-    bottom: -20px; /* Use a negative value to move the arrow below the section */
-    z-index: 10; /* Ensure the arrow appears above the next section */
+    bottom: -20px;
+    z-index: 10;
 }
 
 #projects {
     position: relative;
-    padding-top: 40px; /* Keep this from previous adjustment */
-    padding-bottom: 60px; /* Add some bottom padding for the arrow */
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 #projects .scroll-arrow {
-    bottom: -20px; /* Position it below the section */
+    bottom: -20px;
     z-index: 10;
 }
 
 #blogs {
     position: relative;
-    padding-top: 40px; /* Add some top padding to offset the overlapping arrow */
+    padding-top: 40px;
 }
 
 #chatbot {
