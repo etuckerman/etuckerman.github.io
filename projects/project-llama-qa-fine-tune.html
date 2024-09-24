@@ -10,103 +10,78 @@
 </head>
 <body>
     <main class="project-container">
-        <section id="project-overview" class="project-section">
-            <h2>Project Overview</h2>
-            <p>Fine-tuned the LLaMA 3.1 70B-Instruct model on a custom RV dataset to create a specialized model for answering detailed questions about various RV models, features, and specifications.</p>
-        </section>
+        <h1>LLaMA 3.1 Fine-Tuning for RV Q&A</h1>
         
-        <div class="main-content">
-            <div class="left-column">
-                <section id="training-process" class="project-section">
-                    <h2>Training Process and Results</h2>
-                    <div class="training-chart">
-                        <div id="loss-chart"></div>
-                    </div>
-                    <div class="training-config">
-                        <h3>Configuration</h3>
-                        <ul>
-                            <li>GPUs: 1</li>
-                            <li>Examples: 16</li>
-                            <li>Epochs: 30</li>
-                            <li>Batch size: 2</li>
-                            <li>Total steps: 60</li>
-                            <li>Trainable parameters: 207,093,760</li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
+        <section id="situation">
+            <h2>Situation</h2>
+            <p>The recreational vehicle (RV) market lacks an efficient, AI-powered question-answering system to provide quick and accurate information about various RV models.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>Develop a specialized AI model capable of answering detailed questions about different RV models, including specifications, features, and pricing.</p>
+        </section>
+
+        <section id="action">
+            <h2>Action</h2>
+            <ol>
+                <li>Prepared a dataset of RV-specific questions and answers.</li>
+                <li>Fine-tuned the LLaMA 3.1 70B Instruct model using the Unsloth library for efficient training.</li>
+                <li>Implemented LoRA (Low-Rank Adaptation) for parameter-efficient fine-tuning.</li>
+                <li>Optimized the training process for speed and memory efficiency.</li>
+            </ol>
             
-            <div class="right-column">
-                <section id="model-performance" class="project-section">
-                    <h2>Model Performance</h2>
-                    <div class="performance-metrics">
-                        <h3>Metrics</h3>
-                        <ul>
-                            <li>Final Loss: 0.0692</li>
-                            <li>Perplexity: 3.2</li>
-                            <li>BLEU Score: 0.85</li>
-                            <li>Custom Accuracy: 92%</li>
-                        </ul>
-                    </div>
-                    <div class="performance-example">
-                        <h3>Sample Output</h3>
-                        <div class="qa-example">
-                            <p><strong>Q: Does the Jayco Eagle have a queen size bed?</strong></p>
-                            <p>A: Yes, the Jayco Eagle typically comes with a queen size bed in the master bedroom. Some models may even offer a king size bed option.</p>
-                        </div>
-                    </div>
-                </section>
+            <h3>Training Configuration</h3>
+            <ul>
+                <li>Model: LLaMA 3.1 70B Instruct</li>
+                <li>Max Sequence Length: 2048 tokens</li>
+                <li>LoRA rank: 16</li>
+                <li>Training Steps: 60</li>
+                <li>Batch Size: 2 (8 with gradient accumulation)</li>
+                <li>Learning Rate: 2e-4</li>
+            </ul>
 
-                <section id="key-achievements" class="project-section">
-                    <h2>Key Achievements</h2>
-                    <ul>
-                        <li>Successfully fine-tuned a 70B parameter model for the RV domain</li>
-                        <li>Implemented PEFT, LoRA, and Unsloth for efficient training</li>
-                        <li>Optimized model for inference on limited hardware</li>
-                        <li>Deployed to Hugging Face Hub for easy access and integration</li>
-                    </ul>
-                </section>
+            <div id="training-loss-chart"></div>
+        </section>
 
-                <section id="skills-and-learnings" class="project-section">
-                    <h2>Skills and Learnings</h2>
-                    <div class="skills-grid">
-                        <div class="skills-used">
-                            <h3>Technologies Used</h3>
-                            <ul>
-                                <li>Python, PyTorch</li>
-                                <li>Hugging Face Transformers</li>
-                                <li>PEFT, LoRA, Unsloth</li>
-                                <li>Data preprocessing</li>
-                                <li>Model deployment</li>
-                            </ul>
-                        </div>
-                        <div class="key-learnings">
-                            <h3>Key Takeaways</h3>
-                            <ul>
-                                <li>Deep understanding of LLM fine-tuning processes</li>
-                                <li>Balancing performance with computational efficiency</li>
-                                <li>Advanced data preprocessing for NLP tasks</li>
-                                <li>Expertise in using cutting-edge optimization libraries</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+        <section id="result">
+            <h2>Result</h2>
+            <p>The fine-tuned model demonstrates impressive capabilities in answering RV-specific questions:</p>
+            
+            <div class="qa-examples">
+                <h3>Sample Q&A</h3>
+                <div class="qa-pair">
+                    <p><strong>Q: Does the Jayco Eagle have a queen size bed?</strong></p>
+                    <p>A: Yes, the Jayco Eagle has 1 queen size bed.</p>
+                </div>
+                <div class="qa-pair">
+                    <p><strong>Q: What is the MSRP of the Keystone Cougar?</strong></p>
+                    <p>A: The MSRP of the Keystone Cougar is $28,603.</p>
+                </div>
+                <!-- Add more Q&A pairs here -->
             </div>
-        </div>
+
+            <h3>Performance Metrics</h3>
+            <ul>
+                <li>Training Time: 6.0 minutes</li>
+                <li>Peak Memory Usage: 40.941 GB</li>
+                <li>Memory Usage for Training: 2.082 GB (2.63% of available GPU memory)</li>
+            </ul>
+
+            <p>The model has been successfully uploaded to Hugging Face Hub and is available for further use and experimentation.</p>
+        </section>
     </main>
-    <footer>
-        <p><a href="index.html">Back to Portfolio</a></p>
-    </footer>
+
     <script>
+        // Training loss chart
         var trace = {
-            x: Array.from({length: 60}, (_, i) => i + 1),
-            y: [2.586600, 2.506600, 2.499600, 2.407300, 2.102200, 1.590100, 1.227700, 0.933100, 0.661400, 0.467600, 0.341900, 0.370700, 0.326500, 0.327400, 0.287500, 0.279000, 0.270100, 0.257100, 0.247100, 0.243600, 0.236200, 0.224700, 0.219000, 0.204400, 0.202200, 0.180100, 0.169000, 0.164400, 0.144000, 0.133300, 0.117800, 0.098900, 0.089300, 0.077600, 0.073200, 0.070500, 0.069800, 0.070600, 0.067900, 0.072500, 0.070300, 0.071400, 0.073800, 0.068900, 0.070700, 0.070600, 0.070500, 0.069700, 0.069500, 0.068600, 0.068800, 0.069500, 0.067700, 0.070200, 0.065700, 0.071000, 0.066500, 0.070200, 0.067400, 0.069200],
-            type: 'scatter',
-            line: {color: '#00bcd4'}
+            x: [1, 10, 20, 30, 40, 50, 60],
+            y: [2.586600, 0.467600, 0.243600, 0.133300, 0.072500, 0.068600, 0.069200],
+            type: 'scatter'
         };
 
         var layout = {
-            title: 'Training Loss Over Steps',
+            title: 'Training Loss Over Time',
             xaxis: {title: 'Step'},
             yaxis: {title: 'Loss'},
             plot_bgcolor: '#2a2a2a',
@@ -115,7 +90,7 @@
             margin: {t: 30, b: 40, l: 60, r: 10}
         };
 
-        Plotly.newPlot('loss-chart', [trace], layout, {responsive: true});
+        Plotly.newPlot('training-loss-chart', [trace], layout, {responsive: true});
     </script>
 </body>
 </html>
