@@ -445,3 +445,18 @@ img {
         transform: translateY(-5px) translateX(-50%);
     }
 }
+
+#about {
+    position: relative;
+    padding-bottom: 60px; /* Keep this padding to maintain space */
+}
+
+#about .scroll-arrow {
+    bottom: -20px; /* Use a negative value to move the arrow below the section */
+    z-index: 10; /* Ensure the arrow appears above the next section */
+}
+
+#projects {
+    position: relative;
+    padding-top: 0px; /* Add some top padding to offset the overlapping arrow */
+}
