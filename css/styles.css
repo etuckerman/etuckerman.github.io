@@ -102,27 +102,115 @@ h2 {
 
 /* Hero Section */
 #hero {
-    width: 100%;
-    height: calc(100vh - var(--header-height));
+    position: relative;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), 
-                url('images/profile.jpg') no-repeat center center/cover;
-    margin-left: 0;
-    padding: 0;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    padding-top: calc(var(--header-height) + 100px); /* Reduced top padding */
+    padding-bottom: 60px; /* Reduced bottom padding */
 }
 
 .hero-content {
-    width: 100%;
+    flex-grow: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.key-info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+    margin: 0 auto 30px; /* Reduced bottom margin */
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 20px; /* Raised the arrow */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Adjust the hero text and image if needed */
+.hero-text {
+    padding-right: 20px;
+}
+
+.hero-image img {
+    max-width: 300px; /* Adjust as needed */
+    height: auto;
+}
+
+.key-info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+.key-info-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 28%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.key-info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+.key-info-box i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.key-info-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.key-info-box p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Add a subtle glow effect on hover */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.4);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.2);
+    }
+}
+
+.key-info-box:hover {
+    animation: glow 1.5s infinite;
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .hero-text {
