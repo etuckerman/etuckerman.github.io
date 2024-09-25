@@ -5,45 +5,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elliot Tuckerman's Projects</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/script.js"></script>
+    <script src="/js/script.js" defer></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <main class="projects-container">
         <h1>My Projects</h1>
         <div class="project-grid">
             <div class="project-card">
-                <img src="/images/project1.jpg" alt="Project 1">
-                <h3><a href="/projects/project-llama-qa-fine-tune.html">LLaMA 3.1 QA Fine-tune</a></h3>
+                <div class="project-thumbnail">
+                    <img src="/images/project1.jpg" alt="LLaMA 3.1 QA Fine-tune">
+                    <a href="/projects/project-llama-qa-fine-tune.html" class="view-project">View Project</a>
+                </div>
+                <h3>LLaMA 3.1 QA Fine-tune</h3>
                 <p>Fine-tuned LLaMA 3.1 model for RV-specific Q&A using advanced techniques.</p>
-                <a href="/projects/project-llama-qa-fine-tune.html" class="btn">Learn More</a>
+                <div class="project-demo">
+                    <h4>Try it out:</h4>
+                    <div id="qa-demo">
+                        <div class="preset-buttons">
+                            <button class="preset-button" data-question="What are the sleeping arrangements in the Jayco Eagle?">Jayco Eagle Sleeping</button>
+                            <button class="preset-button" data-question="What's the MSRP of the Keystone Cougar?">Keystone Cougar Price</button>
+                            <button class="preset-button" data-question="Does the Winnebago Micro Minnie have a bathroom?">Winnebago Micro Minnie Features</button>
+                            <button class="preset-button" data-question="What's the towing capacity of the Airstream Classic?">Airstream Classic Towing</button>
+                        </div>
+                        <div id="qa-response"></div>
+                    </div>
+                </div>
             </div>
             <div class="project-card">
-                <img src="images/project2.jpg" alt="AI-driven tool for Counter-Strike: Source Surfing">
+                <div class="project-thumbnail">
+                    <img src="images/project2.jpg" alt="AI-driven tool for Counter-Strike: Source Surfing">
+                    <a href="/projects/cs-surfing-tool.html" class="view-project">View Project</a>
+                </div>
                 <h3>CS:S Surfing AI Tool</h3>
                 <p>Developed an AI-driven tool to analyze and improve surfing techniques in Counter-Strike: Source.</p>
-                <a href="/projects/cs-surfing-tool.html" class="btn">Learn More</a>
+                <div class="project-demo">
+                    <h4>Surfing Technique Analysis:</h4>
+                    <div id="surf-animation">
+                        <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <linearGradient id="rampGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:var(--card-bg);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:var(--text-color);stop-opacity:0.3" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50,350 L200,50 L350,350 Z" fill="url(#rampGradient)" stroke="var(--text-color)" stroke-width="2" />
+                            <path d="M50,350 L200,50" stroke="var(--text-color)" stroke-width="2" stroke-dasharray="5,5" />
+                            <path d="M800,50 L950,350" stroke="var(--text-color)" stroke-width="2" />
+                            <path d="M200,50 L800,50" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                            <path d="M50,350 L950,350" stroke="var(--text-color)" stroke-width="2" fill="none" />
+                            <path d="M50,350 L50,380 L350,380 L350,350" fill="var(--card-bg)" stroke="var(--text-color)" stroke-width="1" opacity="0.5" />
+                            <path d="M350,350 L350,380 L950,380 L950,350" fill="var(--card-bg)" stroke="var(--text-color)" stroke-width="1" opacity="0.3" />
+                            <path id="curve" d="M200,50 Q500,250 950,350" fill="none" stroke="var(--primary-color)" stroke-width="2" />
+                            
+                            <g id="velocity-vectors">
+                                <line id="x-vector" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="2" />
+                                <line id="y-vector" x1="0" y1="0" x2="0" y2="0" stroke="blue" stroke-width="2" />
+                            </g>
+                        </svg>
+                        <div id="velocity-display">
+                            Velocity: <span id="velocity-value">0</span>
+                        </div>
+                        <div id="explanation">
+                            Max velocity: 3500 units/sec (CS:S limit). Logarithmic growth simulates realistic acceleration. Red vector: X velocity, Blue vector: Y velocity.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add two more project cards here with placeholder content -->
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <img src="images/placeholder.jpg" alt="Placeholder Project">
+                    <a href="#" class="view-project">Coming Soon</a>
+                </div>
+                <h3>Placeholder Project 1</h3>
+                <p>This is a placeholder for a future project. Details coming soon!</p>
+                <div class="project-demo">
+                    <h4>Demo coming soon</h4>
+                </div>
             </div>
             <div class="project-card">
-                <img src="images/project3.jpg" alt="Multi-GPU Fine Tuning LLM">
-                <h3>Multi-GPU LLM Fine-Tuning</h3>
-                <p>Implemented efficient multi-GPU fine-tuning for large language models.</p>
-                <a href="project-details.html#multi-gpu-fine-tuning" class="btn">Learn More</a>
-            </div>
-            <div class="project-card">
-                <img src="images/project4.jpg" alt="Vehicle Theft Analysis with Machine Learning Algorithms">
-                <h3>Vehicle Theft ML Analysis</h3>
-                <p>Applied machine learning algorithms to analyze patterns in vehicle theft data.</p>
-                <a href="project-details.html#vehicle-theft-analysis" class="btn">Learn More</a>
+                <div class="project-thumbnail">
+                    <img src="images/placeholder.jpg" alt="Placeholder Project">
+                    <a href="#" class="view-project">Coming Soon</a>
+                </div>
+                <h3>Placeholder Project 2</h3>
+                <p>Another placeholder for an upcoming project. Stay tuned for updates!</p>
+                <div class="project-demo">
+                    <h4>Demo coming soon</h4>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="social-links">
-            <a href="mailto:elliottuckerman99@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/etuckerman"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/elliottuckerman"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </footer>
+    <style>
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-thumbnail {
+            position: relative;
+            height: 180px;
+        }
+        .project-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .view-project {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .view-project:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .project-card h3 {
+            margin: 15px 15px 10px;
+            font-size: 1.3em;
+            color: var(--primary-color);
+        }
+        .project-card p {
+            margin: 0 15px 15px;
+            font-size: 0.9em;
+        }
+        .project-demo {
+            margin: 0 15px 15px;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            position: relative;
+        }
+        .project-demo h4 {
+            margin: 0 0 10px 0;
+            font-size: 1em;
+        }
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .preset-button {
+            font-size: 0.8em;
+            padding: 5px 10px;
+        }
+        #qa-response {
+            margin-top: 10px;
+            padding: 10px;
+            min-height: 60px;
+            font-size: 0.9em;
+        }
+        #surf-animation {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        #velocity-display {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+        #explanation {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background-color: rgba(var(--bg-color-rgb), 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: var(--text-color);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.preset-button') || e.target.closest('#qa-response')) {
+                        e.preventDefault(); // Prevent navigation when clicking on demo elements
+                    }
+                });
+            });
+
+            const qaResponse = document.getElementById('qa-response');
+            const presetButtons = document.querySelectorAll('.preset-button');
+            let isTyping = false;
+
+            presetButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (!isTyping) {
+                        const question = this.getAttribute('data-question');
+                        getQAResponse(question);
+                    }
+                });
+            });
+
+            function getQAResponse(question) {
+                let response = "I'm sorry, I don't have specific information about that. Please try asking about the Jayco Eagle, Keystone Cougar, Winnebago Micro Minnie, or Airstream Classic, for demonstration purposes.";
+                if (question.includes('Jayco Eagle') && question.includes('sleeping')) {
+                    response = 'The Jayco Eagle typically features a queen-size bed in the master bedroom. It may also include additional sleeping arrangements such as bunk beds or convertible sofas, depending on the specific floor plan chosen.';
+                } else if (question.includes('Keystone Cougar') && question.includes('MSRP')) {
+                    response = "The MSRP of the Keystone Cougar is approximately $28,603. However, it's important to note that prices can vary depending on the specific model, features, and dealership.";
+                } else if (question.includes('Winnebago Micro Minnie') && question.includes('bathroom')) {
+                    response = 'Yes, the Winnebago Micro Minnie does have a bathroom. It typically includes a toilet, a shower, and a sink, making it a fully self-contained RV suitable for comfortable travel.';
+                } else if (question.includes('Airstream Classic') && question.includes('towing')) {
+                    response = "The towing capacity of the Airstream Classic varies by model. Generally, it ranges from 8,000 to 10,000 pounds. It's crucial to check the specific model's specifications for accurate towing information before planning your trip.";
+                }
+                simulateTyping(response);
+            }
+
+            function simulateTyping(text) {
+                isTyping = true;
+                qaResponse.textContent = '';
+                let words = text.split(' ');
+                let currentIndex = 0;
+
+                function typeWord() {
+                    if (currentIndex < words.length) {
+                        let word = words[currentIndex] + ' ';
+                        let charIndex = 0;
+
+                        function typeChar() {
+                            if (charIndex < word.length) {
+                                qaResponse.textContent += word[charIndex];
+                                charIndex++;
+                                setTimeout(typeChar, Math.random() * 50 + 20);
+                            } else {
+                                currentIndex++;
+                                setTimeout(typeWord, Math.random() * 200 + 50);
+                            }
+                        }
+
+                        typeChar();
+                    } else {
+                        isTyping = false;
+                        setTimeout(simulateRefactoring, 1000);
+                    }
+                }
+
+                qaResponse.textContent = 'Thinking...';
+                setTimeout(typeWord, 1500);
+            }
+
+            function simulateRefactoring() {
+                let text = qaResponse.textContent;
+                let words = text.split(' ');
+                let randomIndex = Math.floor(Math.random() * words.length);
+                let originalWord = words[randomIndex];
+                words[randomIndex] = '...';
+                qaResponse.textContent = words.join(' ');
+
+                setTimeout(() => {
+                    words[randomIndex] = originalWord;
+                    qaResponse.textContent = words.join(' ');
+                }, 1000);
+            }
+
+            function animateVelocityVectors() {
+                const velocityVectors = document.getElementById('velocity-vectors');
+                const xVector = document.getElementById('x-vector');
+                const yVector = document.getElementById('y-vector');
+                const curve = document.getElementById('curve');
+                const velocityValue = document.getElementById('velocity-value');
+                const maxVelocity = 3500;
+                const duration = 4000; // 4 seconds
+                let startTime;
+        
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    let progress = (currentTime - startTime) / duration;
+        
+                    if (progress > 1) {
+                        startTime = currentTime;
+                        progress = 0;
+                    }
+        
+                    const curveLength = curve.getTotalLength();
+                    const point = curve.getPointAtLength(progress * curveLength);
+        
+                    // Calculate velocity components
+                    const totalVelocity = maxVelocity * (1 - Math.exp(-5 * progress));
+                    
+                    // Y velocity starts high and decreases, but never reaches zero
+                    const yVelocity = maxVelocity * (0.8 * Math.exp(-3 * progress) + 0.2);
+                    
+                    // X velocity starts at medium value and increases
+                    const xVelocity = maxVelocity * (0.4 + 0.6 * (1 - Math.exp(-3 * progress)));
+        
+                    const scaleFactor = 0.05; // Adjust this to change vector length
+        
+                    velocityVectors.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+                    xVector.setAttribute('x2', xVelocity * scaleFactor);
+                    yVector.setAttribute('y2', yVelocity * scaleFactor);
+        
+                    velocityValue.textContent = Math.round(totalVelocity);
+        
+                    requestAnimationFrame(animate);
+                }
+        
+                requestAnimationFrame(animate);
+            }
+        
+            animateVelocityVectors();
+        });
+    </script>
 </body>
 </html>

@@ -165,18 +165,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const placeholders = [
             "Golden sun on my skin",       // 'sun' -> orange
             "Fire lights up the sky",      // 'fire' -> orange
-            "Blue sky above me",           // 'sky' -> blue
+            "The sky above me",            // 'sky' -> blue
             "Ocean waves crash",           // 'ocean' -> cyan
             "Ice cold to the touch",       // 'ice' -> lightblue
-            "Green grass beneath me",      // 'grass' -> green
+            "Vibrant grass beneath me",    // 'grass' -> green
             "Trees sway in the wind",      // 'tree' -> green
             "Night falls quietly",         // 'night' -> darkblue
-            "Blood-red apple shines",      // 'apple' -> red
+            "Blood apple shines",          // 'apple' -> red
             "Lemon scent fills the air",   // 'lemon' -> yellow
             "Snow blankets the earth",     // 'snow' -> white
             "Charcoal sketches lines",     // 'charcoal' -> black
             "Storm clouds gather",         // 'storm' -> gray
-            "Moon glows in silver light"   // 'moon' -> silver
+            "The glowing moon"             // 'moon' -> silver
         ];
         
 
