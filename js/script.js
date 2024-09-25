@@ -86,11 +86,52 @@ function loadHeader() {
 document.addEventListener('DOMContentLoaded', loadHeader);
 
 document.addEventListener('DOMContentLoaded', function() {
+    const DEFAULT_COLOR = '#00bcd4';
+    const DEFAULT_COLOR_NAME = 'Modern Cyan';
+    
+
     const chatbot = document.getElementById('chatbot');
     const chatbotHeader = document.getElementById('chatbot-header');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
     const typingIndicator = document.getElementById('typing-indicator');
+
+    // Update the header HTML
+    chatbotHeader.innerHTML = `
+    <div id="current-theme">Current theme: <span class="color-dot"></span> <span class="theme-name">${DEFAULT_COLOR_NAME}</span></div>
+    <div class="theme-hint">Type 'reset' to return to default</div>
+    `;
+
+    // Add this to your CSS (keep the existing styles)
+    const style = document.createElement('style');
+    style.textContent = `
+    #chatbot-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px;
+    }
+    #current-theme {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    .color-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background-color: ${DEFAULT_COLOR};
+    }
+    .theme-hint {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+    `;
+    document.head.appendChild(style);
+
 
     chatbotHeader.addEventListener('click', function() {
         chatbot.classList.toggle('open');
@@ -114,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function typeWelcomeMessage() {
         showTypingIndicator();
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         hideTypingIndicator();
         const welcomeMessage = "Welcome to the Theme AI Assistant, type what you are thinking, and I'll match a theme to it!";
         addMessage('bot', welcomeMessage);
@@ -179,8 +220,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const words = message.toLowerCase().split(' ');
         
         if (words.includes('reset')) {
-            changeTheme('cyan');
-            addMessage('bot', "I've reset the theme to the original cyan color!");
+            changeTheme(DEFAULT_COLOR);
+            addMessage('bot', `I've reset the theme to the default ${DEFAULT_COLOR_NAME} color!`);
             return;
         }
         
@@ -201,7 +242,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // You might want to adjust other color variables based on the primary color
         // For example:
         // document.documentElement.style.setProperty('--text-color', getContrastColor(color));
+        // Update the header text and color dot
+        const themeName = document.querySelector('.theme-name');
+        const colorName = color === DEFAULT_COLOR ? DEFAULT_COLOR_NAME : (color.charAt(0).toUpperCase() + color.slice(1));
+        themeName.textContent = colorName;
+        document.querySelector('.color-dot').style.backgroundColor = color;
     }
+    
 
     // Helper function to get a contrasting color (simplified version)
     function getContrastColor(color) {
