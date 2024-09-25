@@ -68,12 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Other functionality (chatbot, QA) remains the same...
 });
 
-// Function to load the common header
 function loadHeader() {
     fetch('/header.html')
         .then(response => response.text())
         .then(data => {
-            document.body.insertAdjacentHTML('afterbegin', data);
+            const existingHeader = document.querySelector('header');
+            if (existingHeader) {
+                existingHeader.outerHTML = data;
+            } else {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            }
         })
         .catch(error => console.error('Error loading header:', error));
 }
