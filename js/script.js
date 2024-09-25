@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const words = message.toLowerCase().split(' ');
         
         if (words.includes('reset')) {
-            changeTheme('cyan');
+            changeTheme('#00bcd4');
             addMessage('bot', "I've reset the theme to the original cyan color!");
             return;
         }
@@ -346,7 +346,8 @@ function detectColorFromWord(word) {
         'cloud': 'white',
         'fluffy': 'white',
         'coal': 'black',
-        'charcoal': 'black'
+        'charcoal': 'black',
+        'reset': '#00bcd4'
     };
     
     return colorMap[word.toLowerCase()] || null;

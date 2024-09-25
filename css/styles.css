@@ -1,12 +1,11 @@
 :root {
     --header-height: 60px;
     --primary-color: #00bcd4;
+    --primary-color-rgb: 0, 188, 212;
     --bg-color: #121212;
     --card-bg: #1f1f1f;
     --text-color: #e0e0e0;
-    --primary-color-rgb: 0, 188, 212;
 }
-
 /* Base Styles */
 html, body {
     overflow-x: hidden;
@@ -179,7 +178,7 @@ nav ul li a:hover {
     padding: 20px;
     text-align: center;
     width: 28%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(var(--primary-color-rgb), 0.1);
     transition: all 0.3s ease;
     border: 1px solid rgba(var(--primary-color-rgb), 0.2);
     backdrop-filter: blur(5px);
@@ -187,7 +186,7 @@ nav ul li a:hover {
 
 .key-info-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 7px 14px rgba(var(--primary-color-rgb), 0.3);
     border-color: var(--primary-color);
 }
 
@@ -202,6 +201,7 @@ nav ul li a:hover {
     color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .key-info-box p {
