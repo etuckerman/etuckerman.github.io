@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
             typeWelcomeMessage();
             animatePlaceholder();
         }
-    });
+        });
+
 
     chatbotInput.addEventListener('keypress', async function(e) {
         if (e.key === 'Enter') {
@@ -111,7 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function typeWelcomeMessage() {
+    async function typeWelcomeMessage() {
+        showTypingIndicator();
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        hideTypingIndicator();
         const welcomeMessage = "Welcome to the Theme AI Assistant, type what you are thinking, and I'll match a theme to it!";
         addMessage('bot', welcomeMessage);
     }
