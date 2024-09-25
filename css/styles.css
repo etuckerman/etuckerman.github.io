@@ -325,7 +325,6 @@ footer {
 }
 
 /* Chatbot */
-/* Chatbot */
 #chatbot {
     position: fixed;
     bottom: 20px;
@@ -411,16 +410,15 @@ footer {
 }
 
 .chatbot-input-wrapper {
+    padding: 10px;
+    background-color: #1E1E1E;
     position: relative;
-    padding-top: 20px; /* Add space for the typing indicator */
-    background-color: #1E1E1E; /* Match the chatbot background */
 }
 
 #chatbot-input {
-    border: none;
+    width: 100%;
     padding: 10px;
-    width: calc(100% - 20px);
-    margin: 10px;
+    border: none;
     border-radius: 20px;
     background-color: #3A3A3A;
     color: #FFFFFF;
@@ -438,13 +436,26 @@ footer {
 
 #typing-indicator {
     position: absolute;
-    top: 5px;
+    bottom: 100%;
     left: 10px;
-    background-color: transparent;
-    padding: 2px 5px;
-    border-radius: 10px;
-    font-size: 0.8em;
-    color: #666;
+    background-color: #3A3A3A;
+    padding: 8px 12px;
+    border-radius: 18px;
+    font-size: 0.9em;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+}
+
+#typing-indicator::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 10px;
+    height: 20px;
+    border-right: 10px solid #3A3A3A;
+    border-bottom-right-radius: 16px 14px;
 }
 
 .typing-dots {
@@ -457,7 +468,7 @@ footer {
 .typing-dots span {
     height: 6px;
     width: 6px;
-    background-color: #666;
+    background-color: #FFFFFF;
     border-radius: 50%;
     display: inline-block;
     margin: 0 2px;
