@@ -253,13 +253,14 @@ nav ul li a:hover {
     text-align: center;
     width: 28%;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(200, 200, 200, 0.1); /* Modern silver/grey glow */
     backdrop-filter: blur(5px);
 }
 
 .key-info-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 7px 14px rgba(var(--primary-color-rgb), 0.3);
+    box-shadow: 0 7px 14px rgba(200, 200, 200, 0.2); /* Intensified silver/grey glow on hover */
     border-color: var(--primary-color);
 }
 

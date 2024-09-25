@@ -92,15 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotInput = document.getElementById('chatbot-input');
     const typingIndicator = document.getElementById('typing-indicator');
 
-    // Add event listener for logo click
-    const logoLink = document.querySelector('.logo-link');
-    if (logoLink) {
-        logoLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior
-            window.location.href = '/'; // Redirect to home page
-        });
-    }
-
     chatbotHeader.addEventListener('click', function() {
         chatbot.classList.toggle('open');
         if (chatbot.classList.contains('open') && chatbotMessages.children.length === 0) {
@@ -184,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const words = message.toLowerCase().split(' ');
         
         if (words.includes('reset')) {
-            changeTheme('#00bcd4');
+            changeTheme('cyan');
             addMessage('bot', "I've reset the theme to the original cyan color!");
             return;
         }
@@ -202,29 +193,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function changeTheme(color) {
-        // Convert hex to RGB
-        const rgb = hexToRgb(color);
-        
         document.documentElement.style.setProperty('--primary-color', color);
-        document.documentElement.style.setProperty('--primary-color-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
-        
-        // Update the key info box styles
-        document.querySelectorAll('.key-info-box').forEach(box => {
-            box.style.boxShadow = `0 4px 6px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`;
-            box.style.border = `1px solid rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
-        });
+        // You might want to adjust other color variables based on the primary color
+        // For example:
+        // document.documentElement.style.setProperty('--text-color', getContrastColor(color));
     }
 
-    // Helper function to convert hex to RGB
-    function hexToRgb(hex) {
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
+    // Helper function to get a contrasting color (simplified version)
+    function getContrastColor(color) {
+        // This is a simple implementation. For better results, you might want to use a more sophisticated algorithm
+        const rgb = parseInt(color.substr(1), 16);
+        const brightness = ((rgb >> 16) & 255) * 0.299 + 
+                           ((rgb >> 8) & 255) * 0.587 + 
+                           (rgb & 255) * 0.114;
+        return brightness > 186 ? '#000000' : '#FFFFFF';
     }
 
     async function predictTheme(input) {
