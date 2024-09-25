@@ -163,18 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function animatePlaceholder() {
         const placeholders = [
-            "The sun's golden rays warm my face",
-            "A cerulean sky stretches endlessly above",
-            "Emerald blades of grass tickle my toes",
-            "The cyan waters of the Caribbean beckon",
-            "A lush forest canopy surrounds me",
-            "The inky night sky twinkles with stars",
-            "A crimson drop of blood stains the snow",
-            "Zesty lemon scent fills the air",
-            "Juicy grapes burst with flavor",
-            "Fluffy clouds drift lazily by",
-            "Charcoal sketches come to life on paper"
+            "Golden sun on my skin",       // 'sun' -> orange
+            "Fire lights up the sky",      // 'fire' -> orange
+            "Blue sky above me",           // 'sky' -> blue
+            "Ocean waves crash",           // 'ocean' -> cyan
+            "Ice cold to the touch",       // 'ice' -> lightblue
+            "Green grass beneath me",      // 'grass' -> green
+            "Trees sway in the wind",      // 'tree' -> green
+            "Night falls quietly",         // 'night' -> darkblue
+            "Blood-red apple shines",      // 'apple' -> red
+            "Lemon scent fills the air",   // 'lemon' -> yellow
+            "Snow blankets the earth",     // 'snow' -> white
+            "Charcoal sketches lines",     // 'charcoal' -> black
+            "Storm clouds gather",         // 'storm' -> gray
+            "Moon glows in silver light"   // 'moon' -> silver
         ];
+        
+
         let i = 0;
         function changePlaceholder() {
             chatbotInput.setAttribute('placeholder', placeholders[i]);
@@ -383,27 +388,43 @@ function detectColorFromWord(word) {
     const colorMap = {
         'sun': 'orange',
         'golden': 'orange',
+        'fire': 'orange',
         'sky': 'blue',
+        'water': 'blue',
+        'ocean': 'cyan',
+        'ice': 'lightblue',
         'cerulean': 'blue',
         'grass': 'green',
         'emerald': 'green',
-        'ocean': 'cyan',
-        'caribbean': 'cyan',
+        'tree': 'green',
         'forest': 'darkgreen',
         'night': 'darkblue',
         'inky': 'darkblue',
         'blood': 'red',
+        'apple': 'red',
+        'rose': 'red',
         'crimson': 'red',
         'lemon': 'yellow',
-        'zesty': 'yellow',
+        'sunflower': 'yellow',
+        'star': 'yellow',
+        'sand': 'beige',
+        'peach': 'peach',
+        'dirt': 'brown',
+        'wood': 'brown',
         'grape': 'purple',
+        'lavender': 'purple',
         'juicy': 'purple',
         'cloud': 'white',
+        'snow': 'white',
         'fluffy': 'white',
+        'moon': 'silver',
         'coal': 'black',
         'charcoal': 'black',
+        'storm': 'gray',
+        'ash': 'gray',
         'reset': '#00bcd4'
     };
+
     
     return colorMap[word.toLowerCase()] || null;
 }
