@@ -92,6 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotInput = document.getElementById('chatbot-input');
     const typingIndicator = document.getElementById('typing-indicator');
 
+    // Add event listener for logo click
+    const logoLink = document.querySelector('.logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            window.location.href = '/'; // Redirect to home page
+        });
+    }
+
     chatbotHeader.addEventListener('click', function() {
         chatbot.classList.toggle('open');
         if (chatbot.classList.contains('open') && chatbotMessages.children.length === 0) {

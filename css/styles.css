@@ -71,6 +71,16 @@ header {
     padding: 0 20px;
 }
 
+.logo-name {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    margin-right: 15px;
+}
+
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -83,15 +93,18 @@ header {
     transition: all 0.3s ease;
 }
 
-.logo:hover {
+.logo-link:hover .logo {
     background-color: var(--primary-color);
     color: var(--bg-color);
 }
 
-nav {
-    display: flex;
-    align-items: center;
+.full-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: 1px;
 }
+
 
 nav ul {
     display: flex;
@@ -117,6 +130,29 @@ nav ul li a {
 nav ul li a:hover {
     color: var(--primary-color);
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .logo-name {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 5px;
+    }
+
+    .full-name {
+        font-size: 14px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 5px;
+    }
 }
 
 /* Buttons */
