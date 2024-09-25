@@ -53,12 +53,12 @@
                 <div class="key-info-box">
                     <i class="fas fa-award"></i>
                     <h3>4.0 GPA</h3>
-                    <p>US Equivalent <img src="/images/us-flag.png" alt="US Flag" class="flag us-flag"></p>
+                    <p>US Grade <img src="/images/us-flag.png" alt="US Flag" class="flag us-flag"></p>
                 </div>
                 <div class="key-info-box">
                     <i class="fas fa-gamepad"></i>
-                    <h3>Game Developer</h3>
-                    <p>Unity & Unreal Engine</p>
+                    <h3>Specialization</h3>
+                    <p>Machine Learning and Heuristics</p>
                 </div>
             </div>
         </section>
@@ -179,14 +179,16 @@
     <div id="chatbot">
         <div id="chatbot-header">Chat with me!</div>
         <div id="chatbot-messages"></div>
-        <div id="typing-indicator" class="message bot" style="display: none;">
-            <div class="typing-dots">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="chatbot-input-wrapper">
+            <div id="typing-indicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
         </div>
-        <input type="text" id="chatbot-input" placeholder="Type a message...">
     </div>
 
     <div id="resume-modal" class="modal">
