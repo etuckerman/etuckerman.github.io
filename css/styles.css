@@ -252,9 +252,8 @@ nav ul li a:hover {
     padding: 20px;
     text-align: center;
     width: 28%;
-    box-shadow: 0 4px 6px rgba(var(--primary-color-rgb), 0.1);
     transition: all 0.3s ease;
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
 }
 
@@ -275,7 +274,6 @@ nav ul li a:hover {
     color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .key-info-box p {

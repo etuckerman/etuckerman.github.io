@@ -202,20 +202,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function changeTheme(color) {
+        // Convert hex to RGB
+        const rgb = hexToRgb(color);
+        
         document.documentElement.style.setProperty('--primary-color', color);
-        // You might want to adjust other color variables based on the primary color
-        // For example:
-        // document.documentElement.style.setProperty('--text-color', getContrastColor(color));
+        document.documentElement.style.setProperty('--primary-color-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+        
+        // Update the key info box styles
+        document.querySelectorAll('.key-info-box').forEach(box => {
+            box.style.boxShadow = `0 4px 6px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`;
+            box.style.border = `1px solid rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
+        });
     }
 
-    // Helper function to get a contrasting color (simplified version)
-    function getContrastColor(color) {
-        // This is a simple implementation. For better results, you might want to use a more sophisticated algorithm
-        const rgb = parseInt(color.substr(1), 16);
-        const brightness = ((rgb >> 16) & 255) * 0.299 + 
-                           ((rgb >> 8) & 255) * 0.587 + 
-                           (rgb & 255) * 0.114;
-        return brightness > 186 ? '#000000' : '#FFFFFF';
+    // Helper function to convert hex to RGB
+    function hexToRgb(hex) {
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
     }
 
     async function predictTheme(input) {
