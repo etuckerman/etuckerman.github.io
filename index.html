@@ -193,8 +193,16 @@
     </footer>
 
     <div id="chatbot">
-        <div id="chatbot-header">Chat with me!</div>
+        <div id="chatbot-header">
+            <div class="header-content">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" class="chat-icon">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                </svg>
+                <span class="chat-text">Chat with AI</span>
+            </div>
+        </div>
         <div id="chatbot-messages"></div>
+        <div id="placeholder-preview"></div>
         <div class="chatbot-input-wrapper">
             <div id="typing-indicator">
                 <div class="typing-dots">
@@ -202,9 +210,8 @@
                     <span></span>
                     <span></span>
                 </div>
-                </div>
-            <input type="text" id="chatbot-input" placeholder="Type a message...">
             </div>
+            <input type="text" id="chatbot-input" placeholder="">
         </div>
 
 
