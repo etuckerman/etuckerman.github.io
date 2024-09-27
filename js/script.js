@@ -132,10 +132,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
 
 
+    // Modify your existing click event listener
     chatbotHeader.addEventListener('click', function() {
-        chatbot.classList.toggle('open');
-        updateChatbotHeader();
-    });
+    chatbot.classList.toggle('open');
+    updateChatbotHeader();
+    toggleChatbotIcon();
+});
 
     function updateChatbotHeader() {
         if (chatbot.classList.contains('open')) {
@@ -159,6 +161,16 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
             <span class="chat-text">Chat with AI</span>
         `;
+    }
+    
+    // Add this function to your existing JavaScript
+    function toggleChatbotIcon() {
+        const chatIcon = chatbotHeader.querySelector('.chat-icon');
+        if (chatbot.classList.contains('open')) {
+            chatIcon.style.transform = 'rotate(0deg)';
+        } else {
+            chatIcon.style.transform = 'rotate(-10deg)';
+        }
     }
 
     chatbotInput.addEventListener('keypress', async function(e) {

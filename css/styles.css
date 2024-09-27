@@ -397,7 +397,16 @@ footer {
     color: var(--primary-color);
 }
 
-/* Chatbot */
+@keyframes subtle-bounce {
+    0%, 100% { transform: translateY(calc(100% - 50px)); }
+    50% { transform: translateY(calc(100% - 55px)); }
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
+}
+
 #chatbot {
     position: fixed;
     bottom: 20px;
@@ -406,16 +415,21 @@ footer {
     height: 500px;
     background-color: #1c1c1e;
     border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(calc(100% - 50px));
+}
+
+#chatbot:not(.open) {
+    animation: subtle-bounce 3s ease-in-out infinite, subtle-pulse 3s ease-in-out infinite;
 }
 
 #chatbot.open {
     transform: translateY(0);
+    animation: none;
 }
 
 #chatbot-header {
@@ -423,15 +437,22 @@ footer {
     color: #000000;
     padding: 0 20px;
     cursor: pointer;
-    height: 60px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-bottom: 1px solid #38383a;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+#chatbot-header:hover {
+    background-color: #f0f0f0;
 }
 
 .chat-icon {
     margin-right: 10px;
+    transition: transform 0.3s ease;
 }
 
 .chat-text {
@@ -478,8 +499,6 @@ footer {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
-
-/* Remove the pseudo-elements that were causing the artifact */
 
 .message {
     max-width: 70%;
