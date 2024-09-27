@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
     <script src="/js/theme-model.js"></script>
     <script src="/js/script.js" defer></script>
+    <script src="/js/neural-network.js" defer></script>
+
 </head>
 <body>
     <!-- Dark Mode Toggle -->
@@ -76,7 +78,8 @@
                     <img src="/images/profile.jpg" alt="Elliot Tuckerman">
                 </div>
             </div>
-            <div class="key-info">
+        </div>
+        <canvas id="neuralNetwork" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none;"></canvas><div class="key-info">
                 <div class="key-info-box">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>First Class Honours</h3>

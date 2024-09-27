@@ -28,7 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    type();
+    // Start typing animation after a short delay
+    setTimeout(type, 1000);
+
+    // Set initial header text
+    setChatWithMeText();
+
+    // Chatbot header click event
+    chatbotHeader.addEventListener('click', function() {
+        chatbot.classList.toggle('open');
+        updateChatbotHeader();
+        toggleChatbotIcon();
+    });
 
     // Scroll functionality
     document.querySelectorAll('.scroll-arrow').forEach(arrow => {
@@ -192,6 +203,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addMessage('bot', welcomeMessage);
     }
 
+    // Defer placeholder animation
+    setTimeout(animatePlaceholder, 2000);
+    
     function animatePlaceholder() {
         const placeholders = [
             "Golden sun on my skin",       // 'sun' -> orange
