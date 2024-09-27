@@ -96,11 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotInput = document.getElementById('chatbot-input');
     const typingIndicator = document.getElementById('typing-indicator');
 
-    // Update the header HTML
-    chatbotHeader.innerHTML = `
-    <div id="current-theme">Current theme: <span class="color-dot"></span> <span class="theme-name">${DEFAULT_COLOR_NAME}</span></div>
-    <div class="theme-hint">Type 'reset' to return to default</div>
-    `;
+    // Set initial header text
+    setChatWithMeText();
+
+
 
     // Add this to your CSS (keep the existing styles)
     const style = document.createElement('style');
@@ -135,12 +134,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     chatbotHeader.addEventListener('click', function() {
         chatbot.classList.toggle('open');
-        if (chatbot.classList.contains('open') && chatbotMessages.children.length === 0) {
-            typeWelcomeMessage();
-            animatePlaceholder();
-        }
-        });
+        updateChatbotHeader();
+    });
 
+    function updateChatbotHeader() {
+        if (chatbot.classList.contains('open')) {
+            chatbotHeader.innerHTML = `
+                <div id="current-theme">Current theme: <span class="color-dot"></span> <span class="theme-name">${DEFAULT_COLOR_NAME}</span></div>
+                <div class="theme-hint">Type 'reset' to return to default</div>
+            `;
+            if (chatbotMessages.children.length === 0) {
+                typeWelcomeMessage();
+                animatePlaceholder();
+            }
+        } else {
+            setChatWithMeText();
+        }
+    }
+
+    function setChatWithMeText() {
+        chatbotHeader.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" class="chat-icon">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            </svg>
+            <span class="chat-text">Chat with AI</span>
+        `;
+    }
 
     chatbotInput.addEventListener('keypress', async function(e) {
         if (e.key === 'Enter') {
