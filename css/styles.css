@@ -442,17 +442,71 @@ footer {
     right: 20px;
     width: 300px;
     height: 500px;
-    background-color: #1c1c1e;
+    background-color: #0c0c1e; /* Darker background for better star visibility */
     border-radius: 40px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(255, 255, 255, 0.05); /* Added white glow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(calc(100% - 50px));
 }
+
+#chatbot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at top center,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.05) 40%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Falling Stars */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(600px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.stars-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1; /* Place stars behind other elements */
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: fall linear infinite;
+}
+
+/* Generate multiple stars */
+.star:nth-child(1) { left: 10%; animation-duration: 5s; animation-delay: 0s; }
+.star:nth-child(2) { left: 30%; animation-duration: 7s; animation-delay: 1s; }
+.star:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 2s; }
+.star:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 3s; }
+.star:nth-child(5) { left: 90%; animation-duration: 5s; animation-delay: 4s; }
+
 
 #chatbot:not(.open) {
     animation: subtle-bounce 3s ease-in-out infinite, subtle-pulse 3s ease-in-out infinite;
