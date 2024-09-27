@@ -436,11 +436,6 @@ footer {
     50% { transform: translateY(calc(100% - 55px)); }
 }
 
-@keyframes subtle-pulse {
-    0%, 100% { box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); }
-    50% { box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
-}
-
 #chatbot {
     position: fixed;
     bottom: 20px;
@@ -449,7 +444,9 @@ footer {
     height: 500px;
     background-color: #1c1c1e;
     border-radius: 40px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 255, 255, 0.05); /* Added white glow */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -459,6 +456,19 @@ footer {
 
 #chatbot:not(.open) {
     animation: subtle-bounce 3s ease-in-out infinite, subtle-pulse 3s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { 
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1),
+                    0 0 20px rgba(255, 255, 255, 0.1),
+                    0 0 30px rgba(255, 255, 255, 0.05);
+    }
+    50% { 
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2),
+                    0 0 25px rgba(255, 255, 255, 0.15),
+                    0 0 35px rgba(255, 255, 255, 0.1);
+    }
 }
 
 #chatbot.open {
