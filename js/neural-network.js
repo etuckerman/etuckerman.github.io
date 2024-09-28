@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let layerSpacing;
     let initialHeroPosition;
 
+    let hasScrolledToBottom = false;
+    let opacity = 1;
+
     function initializeCanvas() {
         console.log('Initializing canvas');
         canvas = document.createElement('canvas');
@@ -26,23 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
         resizeCanvas();
     }
 
-    function resizeCanvas() {
-        const docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, document.documentElement.clientWidth);
-        const docHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight);
-        canvas.width = docWidth;
-        canvas.height = docHeight;
-        if (nodes.length > 0) {
-            updateAndDraw();
-        }
-    }
-
     function createNetwork() {
         nodes = [];
         connections = [];
         const heroRect = heroImageElement.getBoundingClientRect();
         initialHeroPosition = {
-            x: heroRect.left + window.pageXOffset + heroRect.width / 2,  // Center X
-            y: heroRect.top + window.pageYOffset + heroRect.height / 2,  // Center Y
+            x: heroRect.left + window.pageXOffset + heroRect.width / 2,
+            y: heroRect.top + window.pageYOffset + heroRect.height / 2,
             width: heroRect.width,
             height: heroRect.height
         };
@@ -69,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         connections.push({
                             start: [layerIndex - 1, prevIndex],
                             end: [layerIndex, nodeIndex],
-                            progress: 0
+                            progress: 0,
+                            flowOffset: Math.random()
                         });
                     });
                 });
@@ -99,18 +93,32 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.stroke();
     }
     
-    function drawConnection(start, end, progress) {
+    function drawConnection(start, end, progress, flowOffset) {
         const scaleFactor = window.devicePixelRatio || 1;
         ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
-        ctx.globalAlpha = progress * 0.3;
+        ctx.globalAlpha = 0.3;
         ctx.lineWidth = 2 / scaleFactor;
+    
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+        const length = Math.sqrt(dx * dx + dy * dy);
+    
+        // Set up the dash pattern
+        const dashLength = 10;
+        const gapLength = 5;
+        ctx.setLineDash([dashLength, gapLength]);
+        ctx.lineDashOffset = -flowOffset * (dashLength + gapLength);
+    
         ctx.beginPath();
         ctx.moveTo(start.x / scaleFactor, start.y / scaleFactor);
         ctx.lineTo(
-            (start.x + (end.x - start.x) * progress) / scaleFactor,
-            (start.y + (end.y - start.y) * progress) / scaleFactor
+            (start.x + dx * progress) / scaleFactor,
+            (start.y + dy * progress) / scaleFactor
         );
         ctx.stroke();
+    
+        // Reset dash pattern
+        ctx.setLineDash([]);
         ctx.globalAlpha = 1;
     }
     
@@ -124,14 +132,18 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.style.height = docHeight + 'px';
         ctx.scale(scaleFactor, scaleFactor);
         if (nodes.length > 0) {
+            createNetwork();  // Recreate the network on resize
             updateAndDraw();
         }
     }
+
     function updateAndDraw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    
         let allComplete = true;
-
+    
+        ctx.globalAlpha = opacity;
+    
         nodes.forEach((layer, layerIndex) => {
             if (layerIndex === 0) return; // Skip rendering the first layer
             layer.forEach((node, nodeIndex) => {
@@ -140,20 +152,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 drawNode(node);
             });
         });
-
+    
         connections.forEach(conn => {
             conn.progress = Math.min(conn.progress + 0.01, 1);
+            conn.flowOffset = (conn.flowOffset + 0.005) % 1; // Reduced speed
             if (conn.progress < 1) allComplete = false;
             const start = nodes[conn.start[0]][conn.start[1]];
             const end = nodes[conn.end[0]][conn.end[1]];
-            drawConnection(start, end, conn.progress);
+            drawConnection(start, end, conn.progress, conn.flowOffset);
         });
-
-        if (!allComplete) {
+    
+        if (!allComplete || isAnimating || opacity > 0) {
             animationFrame = requestAnimationFrame(updateAndDraw);
         } else {
-            isAnimating = false;
-            showClearButton();
+            clearNetwork();
         }
     }
 
@@ -161,68 +173,59 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Starting animation');
         if (isAnimating) return;
         isAnimating = true;
+        opacity = 1;
         createNetwork();
         updateAndDraw();
+        
+        // Start automatic scrolling after a short delay
+        setTimeout(startAutoScroll, 1000);
     }
 
+    function startAutoScroll() {
+        const documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, 
+                                        document.documentElement.clientHeight, document.documentElement.scrollHeight, 
+                                        document.documentElement.offsetHeight);
+        const windowHeight = window.innerHeight;
+        const scrollDistance = documentHeight - windowHeight;
+        
+        // Create a style element for the scroll animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes scrollAnimation {
+                0% { transform: translateY(0); }
+                45% { transform: translateY(-${scrollDistance}px); }
+                55% { transform: translateY(-${scrollDistance}px); }
+                100% { transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Apply the animation to the body
+        document.body.style.overflow = 'hidden';
+        document.body.style.animation = 'scrollAnimation 5s ease-in-out forwards';
+
+        // Listen for the end of the animation
+        document.body.addEventListener('animationend', function() {
+            document.body.style.overflow = '';
+            document.body.style.animation = '';
+            document.head.removeChild(style);
+            fadeOutNetwork();
+        }, { once: true });
+    }
+    
     function clearNetwork() {
+        console.log('Clearing network');
         nodes = [];
         connections = [];
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        hideClearButton();
-    }
-
-    function createClearButton() {
-        const button = document.createElement('div');
-        button.id = 'clearNetworkButton';
-        button.textContent = 'Clear Network';
-        button.style.position = 'absolute';
-        button.style.top = '0';
-        button.style.left = '0';
-        button.style.right = '0';
-        button.style.bottom = '0';
-        button.style.display = 'flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.backgroundColor = 'rgba(128, 128, 128, 0.7)';
-        button.style.color = 'white';
-        button.style.fontFamily = 'Arial, sans-serif';
-        button.style.fontSize = '14px';
-        button.style.cursor = 'pointer';
-        button.style.opacity = '0';
-        button.style.transition = 'opacity 0.3s';
-        button.style.pointerEvents = 'none';
-        button.style.zIndex = '10';
-        button.style.borderRadius = '50%';
-
-        button.addEventListener('click', clearNetwork);
-
-        const heroImageContainer = heroImageElement.parentElement;
-        heroImageContainer.style.position = 'relative';
-        heroImageContainer.appendChild(button);
-    }
-
-    function showClearButton() {
-        const button = document.getElementById('clearNetworkButton');
-        if (button) {
-            button.style.opacity = '1';
-            button.style.pointerEvents = 'auto';
-        }
-    }
-
-    function hideClearButton() {
-        const button = document.getElementById('clearNetworkButton');
-        if (button) {
-            button.style.opacity = '0';
-            button.style.pointerEvents = 'none';
-        }
+        isAnimating = false;
+        cancelAnimationFrame(animationFrame);
     }
 
     function setupAnimation() {
         console.log('Setting up animation');
         initializeCanvas();
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('scroll', resizeCanvas);
 
         const heroImage = document.querySelector('.hero-image img');
         if (heroImage) {
@@ -238,11 +241,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     startAnimation();
                 }
             });
-
-            createClearButton();
         } else {
             console.error('Hero image not found');
         }
+    }
+
+    function fadeOutNetwork() {
+        isAnimating = true;
+        function fade() {
+            opacity -= 0.05;
+            if (opacity > 0) {
+                requestAnimationFrame(fade);
+            } else {
+                clearNetwork();
+            }
+            updateAndDraw();
+        }
+        fade();
     }
 
     setupAnimation();
