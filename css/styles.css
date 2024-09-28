@@ -138,10 +138,41 @@ header {
 }
 
 .full-name {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-color);
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.source-code-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    padding: 4px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.source-code-btn:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.source-code-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--bg-color);
+}
+
+@media (max-width: 768px) {
+    .source-code-btn {
+        padding: 3px;
+    }
+
+    .source-code-btn svg {
+        width: 14px;
+        height: 14px;
+    }
 }
 
 
