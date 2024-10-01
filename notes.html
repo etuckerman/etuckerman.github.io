@@ -9,7 +9,8 @@
         .notes-container {
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: calc(100vh - var(--header-height));
+            margin-top: var(--header-height);
         }
         .content-wrapper {
             display: flex;
@@ -17,9 +18,12 @@
             overflow: hidden;
         }
         .sidebar {
-            width: 200px;
+            width: 250px;
             padding: 20px;
-            background-color: #f0f0f0;
+            background-color: var(--card-bg);
+            border-right: 1px solid var(--primary-color);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
         .notes-svg-container {
             flex: 1;
@@ -33,13 +37,58 @@
         .topic-buttons {
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
         .topic-btn {
-            margin-bottom: 10px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        .topic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        .topic-btn:hover::before {
+            left: 0;
+        }
+        .topic-btn span {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .topic-btn:hover span {
+            color: var(--bg-color);
+        }
+        .topic-btn.active {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+        .topic-btn.active::before {
+            left: 0;
+        }
+        
     </style>
 </head>
 <body>
+    <header>
+        <!-- The content of header.html will be inserted here -->
+    </header>
+
     <main class="notes-container">
         <h1>Machine Learning & AI Study Notes</h1>
         <p>These are my comprehensive notes from studying the fundamentals of machine learning and AI. Select a topic to view its notes.</p>
@@ -47,13 +96,13 @@
         <div class="content-wrapper">
             <div class="sidebar">
                 <div class="topic-buttons">
-                    <button class="topic-btn" data-svg="search.svg">Search</button>
-                    <button class="topic-btn" data-svg="knowledge.svg">Knowledge</button>
-                    <button class="topic-btn" data-svg="uncertainty.svg">Uncertainty</button>
-                    <button class="topic-btn" data-svg="optimization.svg">Optimization</button>
-                    <button class="topic-btn" data-svg="learning.svg">Learning</button>
-                    <button class="topic-btn" data-svg="neuralNetworks.svg">Neural Networks</button>
-                    <button class="topic-btn" data-svg="language.svg">Language</button>
+                    <button class="topic-btn" data-svg="search.svg"><span>Search</span></button>
+                    <button class="topic-btn" data-svg="knowledge.svg"><span>Knowledge</span></button>
+                    <button class="topic-btn" data-svg="uncertainty.svg"><span>Uncertainty</span></button>
+                    <button class="topic-btn" data-svg="optimization.svg"><span>Optimization</span></button>
+                    <button class="topic-btn" data-svg="learning.svg"><span>Learning</span></button>
+                    <button class="topic-btn" data-svg="neuralNetworks.svg"><span>Neural Networks</span></button>
+                    <button class="topic-btn" data-svg="language.svg"><span>Language</span></button>
                 </div>
             </div>
 
@@ -63,21 +112,25 @@
         </div>
     </main>
 
-    <footer>
-        <div class="social-links">
-            <a href="mailto:elliottuckerman99@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/etuckerman"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/elliottuckerman"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Load the header
+            fetch('/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('header').innerHTML = data;
+                });
+
             var svgImage = document.querySelector('.notes-svg');
             var topicButtons = document.querySelectorAll('.topic-btn');
 
             topicButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    topicButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
                     var svgFile = this.getAttribute('data-svg');
                     svgImage.src = '/images/' + svgFile;
                 });
