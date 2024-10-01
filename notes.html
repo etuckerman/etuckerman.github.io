@@ -5,22 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Machine Learning & AI Study Notes | Elliot Tuckerman</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/script.js"></script>
-    <script src="/js/svg-pan-zoom.min.js"></script>
+    <style>
+        .notes-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 200px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .notes-svg-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .notes-svg {
+            width: 100%;
+            height: auto;
+        }
+        .topic-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+        .topic-btn {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <main class="notes-container">
         <h1>Machine Learning & AI Study Notes</h1>
-        <p>These are my comprehensive notes from studying the fundamentals of machine learning and AI. Use the controls to zoom and pan.</p>
-        <div class="zoom-controls">
-            <button id="zoom-in">Zoom In</button>
-            <button id="zoom-out">Zoom Out</button>
-            <button id="reset">Reset View</button>
-        </div>
-        <div class="notes-svg-container">
-            <object type="image/svg+xml" data="/images/notes.svg" class="notes-svg">
-                Your browser does not support SVG or the file could not be loaded.
-            </object>
+        <p>These are my comprehensive notes from studying the fundamentals of machine learning and AI. Select a topic to view its notes.</p>
+        
+        <div class="content-wrapper">
+            <div class="sidebar">
+                <div class="topic-buttons">
+                    <button class="topic-btn" data-svg="search.svg">Search</button>
+                    <button class="topic-btn" data-svg="knowledge.svg">Knowledge</button>
+                    <button class="topic-btn" data-svg="uncertainty.svg">Uncertainty</button>
+                    <button class="topic-btn" data-svg="optimization.svg">Optimization</button>
+                    <button class="topic-btn" data-svg="learning.svg">Learning</button>
+                    <button class="topic-btn" data-svg="neuralNetworks.svg">Neural Networks</button>
+                    <button class="topic-btn" data-svg="language.svg">Language</button>
+                </div>
+            </div>
+
+            <div class="notes-svg-container">
+                <img src="" alt="AI Study Notes" class="notes-svg">
+            </div>
         </div>
     </main>
 
@@ -34,44 +73,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var svgObject = document.querySelector('.notes-svg');
-            svgObject.addEventListener('load', function() {
-                var panZoom = svgPanZoom(svgObject, {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,
-                    minZoom: 0.1
+            var svgImage = document.querySelector('.notes-svg');
+            var topicButtons = document.querySelectorAll('.topic-btn');
+
+            topicButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var svgFile = this.getAttribute('data-svg');
+                    svgImage.src = '/images/' + svgFile;
                 });
-
-                function fitSvgToContainer() {
-                    var svgDoc = svgObject.contentDocument;
-                    if (svgDoc) {
-                        var svg = svgDoc.querySelector('svg');
-                        if (svg) {
-                            var bbox = svg.getBBox();
-                            var containerWidth = svgObject.clientWidth;
-                            var containerHeight = svgObject.clientHeight;
-                            var svgAspectRatio = bbox.width / bbox.height;
-                            var containerAspectRatio = containerWidth / containerHeight;
-
-                            if (svgAspectRatio > containerAspectRatio) {
-                                // SVG is wider than container, fit to width
-                                panZoom.zoom(containerWidth / bbox.width);
-                            } else {
-                                // SVG is taller than container, fit to height
-                                panZoom.zoom(containerHeight / bbox.height);
-                            }
-
-                            panZoom.center();
-                        }
-                    }
-                }
-
-                // Call fitSvgToContainer initially and on window resize
-                fitSvgToContainer();
-                window.addEventListener('resize', fitSvgToContainer);
             });
+
+            // Initialize with the first topic
+            topicButtons[0].click();
         });
     </script>
 </body>
