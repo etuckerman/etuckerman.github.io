@@ -20,7 +20,7 @@ html, body {
 }
 
 body {
-    padding-top: var(--header-height);
+    padding-top: calc(var(--header-height) + 20px);
 }
 
 * {
@@ -289,6 +289,10 @@ nav ul li a:hover {
 }
 
 @media (min-width: 768px) {
+    .key-info {
+        flex-direction: row;
+    }
+    
     .hero-content {
         flex-direction: row;
         align-items: center;
@@ -333,6 +337,7 @@ nav ul li a:hover {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 20px;
 }
 
 .key-info-box {
@@ -341,11 +346,21 @@ nav ul li a:hover {
     padding: 20px;
     text-align: center;
     width: 100%;
-    margin-bottom: 20px;
     transition: all 0.3s ease;
     border: 1px solid var(--primary-color);
     box-shadow: 0 4px 6px rgba(200, 200, 200, 0.1);
     backdrop-filter: blur(5px);
+}
+
+.key-info-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.key-info-box p {
+    font-size: 0.9rem;
+    word-wrap: break-word;
 }
 
 @media (min-width: 768px) {
@@ -356,7 +371,6 @@ nav ul li a:hover {
 
     .key-info-box {
         width: 28%;
-        margin-bottom: 0;
     }
 }
 
@@ -1257,9 +1271,9 @@ html {
 }
 .hero-buttons {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     margin-top: 30px;
 }
 
@@ -1278,6 +1292,20 @@ html {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 250px;
+}
+
+@media (min-width: 768px) {
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 60px;
+    }
+
+    .hero-btn {
+        width: auto;
+    }
 }
 
 .hero-btn::before {
