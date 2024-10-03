@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
         await new Promise(resolve => setTimeout(resolve, 2000));
         
         hideTypingIndicator();
-
+    
         const words = message.toLowerCase().split(' ');
         
         if (words.includes('reset')) {
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        addMessage('bot', "I didn't detect any colors in your message. Try mentioning things like 'sun', 'sky', or 'grass', or type 'reset' to reset the theme!");
+        addMessage('bot', "Due to GPU cost constraints, this chatbot is limited to color-based theme changes. Try mentioning colors or objects like 'sun', 'sky', or 'grass', or type 'reset' to return to the default theme. For more complex interactions, please check out my other projects!");
     }
 
     function changeTheme(color) {
