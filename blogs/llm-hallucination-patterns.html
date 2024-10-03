@@ -14,34 +14,87 @@
             <p class="blog-date">October 03, 2024</p>
             <img src="/images/neural_brain.jpg" alt="Neural Network and Human Brain Comparison" class="blog-header-image">
             <div class="blog-content">
-                <p>During my recent work with unreleased AI models, I stumbled upon an intriguing pattern in Large Language Model (LLM) behavior, particularly when these models produce hallucinations. This observation not only sheds light on the inner workings of LLMs but also draws a fascinating parallel with human cognitive processes.</p>
+                <p class="lead">During my recent work with unreleased AI models, I stumbled upon an intriguing pattern in Large Language Model (LLM) behavior, particularly when these models produce hallucinations. This observation not only sheds light on the inner workings of LLMs but also draws a fascinating parallel with human cognitive processes.</p>
 
-                <h2>The Hallucination Pattern</h2>
-                <p>When an LLM generates a false positive response (answering "yes" to a question that should be answered "no"), I noticed a consistent pattern in its attention mechanism. The model invariably focuses on the "yes" it has just generated, using this as a springboard to construct a rationale for its incorrect answer. This self-reinforcing behavior leads to increasingly elaborate, yet entirely fabricated, explanations.</p>
+                <div class="content-block">
+                    <h2>The Hallucination Pattern</h2>
+                    <p>When an LLM generates a false positive response (answering "yes" to a question that should be answered "no"), I noticed a consistent pattern in its attention mechanism. The model invariably focuses on the "yes" it has just generated, using this as a springboard to construct a rationale for its incorrect answer. This self-reinforcing behavior leads to increasingly elaborate, yet entirely fabricated, explanations.</p>
+                    <div class="svg-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+                          <!-- Input -->
+                          <rect x="10" y="10" width="80" height="30" rx="5" ry="5" fill="#3498db"/>
+                          <text x="50" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Input Query</text>
+                          
+                          <!-- LLM -->
+                          <rect x="140" y="50" width="120" height="60" rx="10" ry="10" fill="#2ecc71"/>
+                          <text x="200" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">LLM</text>
+                          
+                          <!-- False Positive -->
+                          <rect x="310" y="10" width="80" height="30" rx="5" ry="5" fill="#e74c3c"/>
+                          <text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">False "Yes"</text>
+                          
+                          <!-- Feedback Loop -->
+                          <path d="M350,40 C350,100 300,140 200,140 C100,140 50,100 50,40" fill="none" stroke="#f39c12" stroke-width="2" class="feedback-loop"/>
+                          
+                          <!-- Labels -->
+                          <text x="200" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" class="svg-text">Attention Feedback Loop</text>
+                          <text x="200" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" class="svg-text">Reinforcing False Information</text>
+                          
+                          <!-- Arrows -->
+                          <line x1="90" y1="25" x2="130" y2="60" class="svg-arrow input-arrow" stroke-width="2"/>
+                          <polygon points="130,60 120,50 120,70" class="svg-arrow input-arrow-head"/>
+                          
+                          <line x1="260" y1="65" x2="300" y2="25" class="svg-arrow output-arrow" stroke-width="2"/>
+                          <polygon points="300,25 290,35 310,35" class="svg-arrow output-arrow-head"/>
+                          
+                          <!-- Animation dot -->
+                          <polygon points="50,40 40,50 60,50" fill="#f39c12" class="feedback-arrow"/>
+                        </svg>
+                    </div>
+                </div>
 
-                <h2>Attention Mechanisms and False Positives</h2>
-                <p>In the context of transformer-based models, the attention mechanism plays a crucial role in determining which parts of the input (or previously generated output) the model should focus on when producing the next token. In these hallucination scenarios, the model's attention to its own false positive response creates a feedback loop, reinforcing the incorrect information and leading to further confabulation.</p>
+                <div class="content-block">
+                    <h2>Attention Mechanisms and False Positives</h2>
+                    <p>In the context of transformer-based models, the attention mechanism plays a crucial role in determining which parts of the input (or previously generated output) the model should focus on when producing the next token. In these hallucination scenarios, the model's attention to its own false positive response creates a feedback loop, reinforcing the incorrect information and leading to further confabulation.</p>
+                    <div class="info-box">
+                        <h3>Key Insight</h3>
+                        <p>The model's attention to its own false positive response creates a feedback loop, reinforcing incorrect information.</p>
+                    </div>
+                </div>
 
-                <h2>A Human Parallel: The Snowflake World Tour Revelation</h2>
-                <p>At the Snowflake World Tour 2024 in Atlanta, I had the opportunity to discuss this observation with a neurobiology researcher. He shared insights from a study he conducted that bears a striking resemblance to the LLM behavior I observed.</p>
+                <div class="content-block">
+                    <h2>A Human Parallel: The Snowflake World Tour Revelation</h2>
+                    <p>At the Snowflake World Tour 2024 in Atlanta, I had the opportunity to discuss this observation with a neurobiology researcher. He shared insights from a study he conducted that bears a striking resemblance to the LLM behavior I observed.</p>
+                    <blockquote>
+                        "Participants consistently fabricated reasons to support the switched answers, unaware that these weren't their original responses."
+                    </blockquote>
+                    <p>In his experiment, participants were asked simple yes/no questions. Months later, they were shown their responses, but with some answers surreptitiously changed to their opposites. When asked to explain their (altered) choices, participants consistently fabricated reasons to support the switched answers, unaware that these weren't their original responses.</p>
+                </div>
 
-                <p>In his experiment, participants were asked simple yes/no questions. Months later, they were shown their responses, but with some answers surreptitiously changed to their opposites. When asked to explain their (altered) choices, participants consistently fabricated reasons to support the switched answers, unaware that these weren't their original responses.</p>
+                <div class="content-block">
+                    <h2>Implications and Future Research</h2>
+                    <p>The parallel between LLM behavior and human cognitive processes in this context is remarkable. It suggests that the tendency to confabulate explanations for decisions - even when those decisions are externally manipulated - might be a fundamental aspect of information processing systems, whether artificial or biological.</p>
+                    <div class="two-column">
+                        <div>
+                            <h3>Future Research Avenues</h3>
+                            <ul>
+                                <li>Investigating the role of attention mechanisms in LLM hallucinations and potential mitigation strategies</li>
+                                <li>Exploring the ethical implications of LLM confabulation in high-stakes decision-making scenarios</li>
+                                <li>Developing new techniques for detecting and preventing this type of self-reinforcing false information in AI systems</li>
+                                <li>Further comparative studies between LLM behavior and human cognitive processes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="/images/placeholder-research.svg" alt="Future Research Directions" class="inline-image">
+                        </div>
+                    </div>
+                </div>
 
-                <h2>Implications and Future Research</h2>
-                <p>The parallel between LLM behavior and human cognitive processes in this context is remarkable. It suggests that the tendency to confabulate explanations for decisions - even when those decisions are externally manipulated - might be a fundamental aspect of information processing systems, whether artificial or biological.</p>
-
-                <p>This observation opens up several avenues for future research:</p>
-                <ul>
-                    <li>Investigating the role of attention mechanisms in LLM hallucinations and potential mitigation strategies</li>
-                    <li>Exploring the ethical implications of LLM confabulation in high-stakes decision-making scenarios</li>
-                    <li>Developing new techniques for detecting and preventing this type of self-reinforcing false information in AI systems</li>
-                    <li>Further comparative studies between LLM behavior and human cognitive processes</li>
-                </ul>
-
-                <h2>Conclusion</h2>
-                <p>As we continue to push the boundaries of AI capabilities, insights like these become increasingly valuable. They not only help us understand and improve our AI systems but also offer intriguing glimpses into the nature of intelligence and decision-making processes. The parallels between LLM behavior and human cognition in this instance serve as a reminder of the complex and often unexpected ways in which artificial intelligence can mirror human thought patterns.</p>
-
-                <p>As we move forward, it's crucial that we remain vigilant in our exploration of AI behaviors, always seeking to understand the underlying mechanisms that drive these powerful systems. Only through such careful observation and analysis can we hope to develop AI that is not only more capable but also more reliable and aligned with human values.</p>
+                <div class="content-block">
+                    <h2>Conclusion</h2>
+                    <p>As we continue to push the boundaries of AI capabilities, insights like these become increasingly valuable. They not only help us understand and improve our AI systems but also offer intriguing glimpses into the nature of intelligence and decision-making processes. The parallels between LLM behavior and human cognition in this instance serve as a reminder of the complex and often unexpected ways in which artificial intelligence can mirror human thought patterns.</p>
+                    <p>As we move forward, it's crucial that we remain vigilant in our exploration of AI behaviors, always seeking to understand the underlying mechanisms that drive these powerful systems. Only through such careful observation and analysis can we hope to develop AI that is not only more capable but also more reliable and aligned with human values.</p>
+                </div>
             </div>
         </article>
     </main>

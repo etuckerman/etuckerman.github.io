@@ -1581,36 +1581,60 @@ html {
     font-size: 1.1em;
 }
 
-.blog-content h2 {
+.lead {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.content-block {
+    margin-bottom: 40px;
+}
+
+.content-block h2 {
     font-size: 1.8em;
     color: var(--primary-color);
-    margin-top: 40px;
     margin-bottom: 20px;
 }
 
-.blog-inline-image {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    margin: 20px 0;
+.two-column {
+    display: flex;
+    gap: 30px;
 }
 
-.blog-content pre {
+.two-column > div {
+    flex: 1;
+}
+
+.inline-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.info-box {
     background-color: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
-    overflow-x: auto;
-    font-size: 0.9em;
+    margin-top: 20px;
 }
 
-.blog-content code {
-    font-family: 'Courier New', Courier, monospace;
+.info-box h3 {
+    color: var(--primary-color);
+    margin-top: 0;
 }
 
-.blog-content p {
-    margin-bottom: 20px;
+blockquote {
+    font-style: italic;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .two-column {
+        flex-direction: column;
+    }
 }
 
 .skill-chart {
@@ -1620,4 +1644,75 @@ html {
     background-color: #000000;
     padding: 20px;
     border-radius: 10px;
+}
+
+.full-width-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.svg-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.svg-container svg {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+}
+
+.svg-text {
+    fill: var(--text-color);
+}
+
+.svg-arrow {
+    stroke: var(--text-color);
+    fill: var(--text-color);
+}
+
+.input-arrow, .input-arrow-head,
+.output-arrow, .output-arrow-head,
+.feedback-loop, .feedback-arrow {
+    opacity: 0;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.input-arrow, .input-arrow-head {
+    animation-name: fade-left;
+}
+
+.output-arrow, .output-arrow-head {
+    animation-name: fade-right;
+}
+
+.feedback-loop {
+    animation-name: fade-orange;
+    stroke: #f39c12;
+    fill: none;  /* Ensure the path is not filled */
+    stroke-width: 2;
+}
+
+.feedback-arrow {
+    animation-name: fade-orange;
+    fill: #f39c12;
+}
+
+@keyframes fade-left {
+    0%, 33.33%, 100% { opacity: 0; }
+    5%, 28.33% { opacity: 1; }
+}
+
+@keyframes fade-right {
+    33.33%, 66.67%, 100% { opacity: 0; }
+    38.33%, 61.67% { opacity: 1; }
+}
+
+@keyframes fade-orange {
+    0%, 66.67%, 100% { opacity: 0; }
+    71.67%, 95% { opacity: 1; }
 }
