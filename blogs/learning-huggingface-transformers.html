@@ -24,13 +24,11 @@
                 <img src="/images/transformer_decoding_2.gif" alt="Transformer Architecture" class="blog-inline-image">
                 <p>The course kicks off with the basics of transformers and how to use the Hugging Face ecosystem. I was amazed at how quickly I could get a pre-trained model up and running. Here's a simple example of how you can use a pre-trained model for sentiment analysis:</p>
                 
-                <pre><code>
-from transformers import pipeline
+                <pre><code>from transformers import pipeline
 
 classifier = pipeline("sentiment-analysis")
 result = classifier("I love learning about AI!")
-print(result)
-                </code></pre>
+print(result)</code></pre>
                 
                 <p>It's that simple! This code snippet alone got me excited about the possibilities.</p>
                 
