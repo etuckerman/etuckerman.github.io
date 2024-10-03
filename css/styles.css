@@ -692,7 +692,7 @@ footer {
     right: 20px;
     width: 300px;
     height: 500px;
-    background-color: #0c0c1e; /* Darker background for better star visibility */
+    background-color: #0c0c1e;
     border-radius: 40px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -700,7 +700,7 @@ footer {
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(calc(100% - 50px));
-    
+    z-index: 9999; /* Add this line to ensure chatbot is on top */
 }
 
 #chatbot::before {
