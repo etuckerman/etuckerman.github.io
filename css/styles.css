@@ -1693,13 +1693,22 @@ blockquote {
 .feedback-loop {
     animation-name: fade-orange;
     stroke: #f39c12;
-    fill: none;  /* Ensure the path is not filled */
+    fill: none;
     stroke-width: 2;
 }
 
 .feedback-arrow {
     animation-name: fade-orange;
     fill: #f39c12;
+}
+
+.rotate-45-tip {
+    transform-origin: 130px 60px;
+    transform: rotate(45deg);
+}
+
+.output-arrow-head.rotate-45-tip {
+    transform-origin: 300px 25px;
 }
 
 @keyframes fade-left {
