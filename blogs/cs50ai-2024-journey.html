@@ -6,6 +6,7 @@
     <title>My CS50AI 2024 Journey: From Search to Neural Networks | Elliot Tuckerman's Blog</title>
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <main class="blog-post-container">
@@ -18,6 +19,10 @@
 
                 <h2>The Journey Through AI Concepts</h2>
                 <p>The course took me through a comprehensive tour of AI concepts, starting from the basics of search algorithms to the complexities of neural networks. Here's a breakdown of my journey:</p>
+
+                <div class="skill-chart">
+                    <canvas id="skillChart"></canvas>
+                </div>
 
                 <h3>1. Search Algorithms and Game Theory</h3>
                 <p>I began with implementing search algorithms, creating a program to find the shortest path between actors in a social network (the "Six Degrees of Kevin Bacon" game). This project taught me about graph theory and breadth-first search.</p>
@@ -69,6 +74,116 @@
             .then(data => {
                 document.body.insertAdjacentHTML('beforeend', data);
             });
+
+        const skillOrder = [
+            'Search Algorithms',
+            'Game Theory',
+            'Knowledge Representation',
+            'Probabilistic Models',
+            'Optimization',
+            'Machine Learning',
+            'Neural Networks',
+            'NLP'
+        ];
+
+        const finalValues = {
+            'Search Algorithms': 82,
+            'Game Theory': 98,
+            'Knowledge Representation': 78,
+            'Probabilistic Models': 75,
+            'Optimization': 81,
+            'Machine Learning': 92,
+            'Neural Networks': 85,
+            'NLP': 92
+        };
+
+        const startingValues = [50, 60, 45, 40, 50, 65, 45, 55];
+
+        // Create the skill chart
+        var ctx = document.getElementById('skillChart').getContext('2d');
+        var skillChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: skillOrder,
+                datasets: [
+                    {
+                        label: 'Starting Skills',
+                        data: startingValues,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'AI Skills Progress',
+                        data: [...startingValues],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        });
+
+        let currentSkillIndex = 0;
+
+        function animateSkill(index) {
+            const skill = skillOrder[index];
+            const startValue = startingValues[index];
+            const endValue = finalValues[skill];
+            const duration = 1000; // 1 second
+            const startTime = Date.now();
+
+            function updateSkill() {
+                const currentTime = Date.now();
+                const elapsedTime = currentTime - startTime;
+                
+                if (elapsedTime < duration) {
+                    const progress = elapsedTime / duration;
+                    const currentValue = startValue + (endValue - startValue) * progress;
+                    skillChart.data.datasets[1].data[index] = currentValue;
+                    skillChart.update();
+                    requestAnimationFrame(updateSkill);
+                } else {
+                    skillChart.data.datasets[1].data[index] = endValue;
+                    skillChart.update();
+                    currentSkillIndex++;
+                    if (currentSkillIndex < skillOrder.length) {
+                        setTimeout(() => animateSkill(currentSkillIndex), 500); // 0.5 second pause between skills
+                    }
+                }
+            }
+
+            updateSkill();
+        }
+
+        // Start the animation
+        animateSkill(currentSkillIndex);
     </script>
 </body>
 </html>
