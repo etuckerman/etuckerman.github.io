@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey Learning Hugging Face Transformers | Elliot Tuckerman's Blog</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js"></script>
+</head>
+<body>
+    <main class="blog-post-container">
+        <article class="blog-post">
+            <h1>My Journey Learning Hugging Face Transformers</h1>
+            <p class="blog-date">July 15, 2023</p>
+            <img src="/images/hugs-mobile.svg" alt="Hugging Face Transformers" class="blog-header-image">
+            <div class="blog-content">
+                <p>Hey there, fellow AI enthusiasts! Today, I want to share my exciting journey of learning Hugging Face Transformers through their fantastic NLP course. If you're looking to dive into the world of Natural Language Processing and state-of-the-art language models, buckle up because this ride is worth it!</p>
+                
+                <h2>Why Hugging Face Transformers?</h2>
+                <img src="/images/huggingface_logo-noborder.svg" alt="Hugging Face Logo" class="blog-inline-image">
+                <p>Before we dive in, you might be wondering, "Why Hugging Face?" Well, Hugging Face has become the go-to platform for state-of-the-art NLP models and tools. Their Transformers library is a game-changer, making it incredibly easy to use pre-trained models for various NLP tasks. Plus, their course is free and comprehensive – a perfect combo for self-learners like us!</p>
+                
+                <h2>Getting Started: The Basics</h2>
+                <img src="/images/transformer_decoding_2.gif" alt="Transformer Architecture" class="blog-inline-image">
+                <p>The course kicks off with the basics of transformers and how to use the Hugging Face ecosystem. I was amazed at how quickly I could get a pre-trained model up and running. Here's a simple example of how you can use a pre-trained model for sentiment analysis:</p>
+                
+                <pre><code>
+from transformers import pipeline
+
+classifier = pipeline("sentiment-analysis")
+result = classifier("I love learning about AI!")
+print(result)
+                </code></pre>
+                
+                <p>It's that simple! This code snippet alone got me excited about the possibilities.</p>
+                
+                <h2>Diving Deeper: Fine-tuning Models</h2>
+                <img src="/images/fine_tune.gif" alt="Fine-tuning process" class="blog-inline-image">
+                <p>As I progressed through the course, I learned about fine-tuning these pre-trained models for specific tasks. This is where things got really interesting. I could take a general-purpose language model and adapt it to my specific needs. The course provides clear examples and exercises to practice this crucial skill.</p>
+                
+                <h2>The Community Aspect</h2>
+                <img src="/images/models-mobile.svg" alt="AI Community" class="blog-inline-image">
+                <p>One of the best parts of learning with Hugging Face is the vibrant community. The course encourages interaction through their forums and GitHub repositories. I found myself learning not just from the course material, but from fellow learners and the Hugging Face team themselves.</p>
+                
+                <h2>Challenges and Breakthroughs</h2>
+                <p>Of course, the journey wasn't without its challenges. Grasping concepts like attention mechanisms and the intricacies of different transformer architectures took time. But the "aha!" moments when things clicked were incredibly rewarding. I remember the excitement when I successfully fine-tuned a model for a custom classification task – it felt like unlocking a new superpower!</p>
+                
+                <h2>Practical Applications</h2>
+                <img src="/images/applications-of-nlp.png" alt="NLP Applications" class="blog-inline-image">
+                <p>The course does an excellent job of balancing theory with practical applications. I appreciated how each concept was followed by hands-on examples. By the end of the course, I had built several small projects, including a text summarizer and a question-answering system.</p>
+                
+                <h2>Looking Ahead</h2>
+                <p>Completing the Hugging Face NLP course feels like just the beginning. It has opened up a world of possibilities in NLP for me. I'm excited to apply these skills to real-world problems and continue exploring the rapidly evolving field of AI and NLP.</p>
+                
+                <h2>Conclusion</h2>
+                <img src="/images/future-of-AI.jpg" alt="Future of AI" class="blog-inline-image">
+                <p>If you're considering diving into NLP and transformer models, I highly recommend the Hugging Face course. It's well-structured, hands-on, and will give you the skills to start working with state-of-the-art NLP models. Remember, the key is to practice and experiment as you learn. Don't be afraid to try out different models and tasks – that's where the real learning happens!</p>
+                
+                <p>Happy learning, and may your models be ever accurate!</p>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        // Load the footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+    </script>
+</body>
+</html>
