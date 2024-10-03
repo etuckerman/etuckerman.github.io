@@ -29,10 +29,13 @@
             flex: 1;
             overflow-y: auto;
             overflow-x: hidden;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .notes-svg {
             width: 100%;
             height: auto;
+            display: block;
         }
         .topic-buttons {
             display: flex;
@@ -81,7 +84,6 @@
         .topic-btn.active::before {
             left: 0;
         }
-        
     </style>
 </head>
 <body>
@@ -133,11 +135,17 @@
 
                     var svgFile = this.getAttribute('data-svg');
                     svgImage.src = '/images/' + svgFile;
+                    
+                    // Scroll to the top when changing topics
+                    document.querySelector('.notes-svg-container').scrollTop = 0;
                 });
             });
 
             // Initialize with the first topic
             topicButtons[0].click();
+
+            // Update SVG size on window resize
+            window.addEventListener('resize', updateSvgSize);
         });
     </script>
 </body>
