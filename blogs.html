@@ -22,8 +22,13 @@
         </div>
     </main>
 
-    <footer>
-        <!-- Include your footer content here -->
-    </footer>
+    <script>
+        // Load the footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+    </script>
 </body>
 </html>
