@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Defer placeholder animation
-    setTimeout(animatePlaceholder, 2000);
+    //setTimeout(animatePlaceholder, 2000);
     
     function animatePlaceholder() {
         const placeholders = [
