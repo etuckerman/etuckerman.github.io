@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CS50AI 2024 Journey: From Search to Neural Networks | Elliot Tuckerman's Blog</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js"></script>
+</head>
+<body>
+    <main class="blog-post-container">
+        <article class="blog-post">
+            <h1>My CS50AI 2024 Journey: From Search to Neural Networks</h1>
+            <p class="blog-date">March 15, 2024</p>
+            <img src="/images/cs50ai-2024.jpg" alt="CS50AI 2024 Course" class="blog-header-image">
+            <div class="blog-content">
+                <p>Embarking on Harvard's CS50AI course has been an exhilarating journey into the world of artificial intelligence. This course, which explores the concepts and algorithms at the foundation of modern AI, has been a transformative experience. I'm excited to share the key insights and skills I've gained along the way.</p>
+
+                <h2>The Journey Through AI Concepts</h2>
+                <p>The course took me through a comprehensive tour of AI concepts, starting from the basics of search algorithms to the complexities of neural networks. Here's a breakdown of my journey:</p>
+
+                <h3>1. Search Algorithms and Game Theory</h3>
+                <p>I began with implementing search algorithms, creating a program to find the shortest path between actors in a social network (the "Six Degrees of Kevin Bacon" game). This project taught me about graph theory and breadth-first search.</p>
+
+                <p>Next, I delved into game theory with a Tic-Tac-Toe AI. Implementing the minimax algorithm was challenging, but it was incredibly satisfying to see the AI make optimal moves and become unbeatable.</p>
+
+                <h3>2. Knowledge Representation</h3>
+                <p>The next phase focused on knowledge representation. I worked on a Minesweeper AI, which was a great exercise in logical inference and reasoning under uncertainty. This project really pushed me to think about how to represent and use knowledge effectively.</p>
+
+                <h3>3. Uncertainty and Probabilistic Models</h3>
+                <p>Moving into probability, I implemented a PageRank algorithm and worked on a heredity problem. These projects helped me understand Bayesian networks and how to model uncertainty in AI systems.</p>
+
+                <h3>4. Optimization</h3>
+                <p>The optimization section introduced me to constraint satisfaction problems. I created a crossword puzzle solver, which was a great way to understand how AI can be used to solve complex, constrained problems.</p>
+
+                <h3>5. Machine Learning</h3>
+                <p>The machine learning section was particularly exciting. I implemented a shopping predictor using nearest-neighbor classification and explored reinforcement learning by creating an AI that learns to play Nim.</p>
+
+                <h3>6. Neural Networks</h3>
+                <p>The course culminated with neural networks. I built a traffic sign recognition system using convolutional neural networks, achieving an impressive 99.38% accuracy. This project really opened my eyes to the power of deep learning.</p>
+
+                <h3>7. Natural Language Processing</h3>
+                <p>Finally, I explored natural language processing, working with attention mechanisms in transformer models. This gave me insight into how AI can understand and generate human language.</p>
+
+                <h2>Key Takeaways and Challenges</h2>
+                <ul>
+                    <li>Implementing complex algorithms from scratch gave me a deep understanding of their inner workings.</li>
+                    <li>Debugging AI systems is a unique challenge – often, the issue isn't in the code itself but in the model's logic or training data.</li>
+                    <li>The importance of optimization and efficiency in AI algorithms – small improvements can lead to significant performance gains.</li>
+                    <li>The ethical considerations in AI development became increasingly apparent as we worked on more advanced systems.</li>
+                </ul>
+
+                <h2>Looking Ahead</h2>
+                <p>Completing CS50AI has not only equipped me with valuable skills but has also ignited a passion for further exploration in the field of AI. I'm excited to apply these learnings to real-world problems, particularly in areas like medical diagnosis and natural language processing.</p>
+
+                <p>For anyone considering diving into AI, I wholeheartedly recommend CS50AI. It's challenging, rewarding, and provides an excellent foundation for a career or further studies in artificial intelligence.</p>
+
+                <p>If you're interested in seeing my work from the course, including detailed implementations of each project, check out my <a href="https://github.com/etuckerman/CS50AI" target="_blank">GitHub repository</a>.</p>
+
+                <p>Here's to the future of AI and the endless possibilities it holds!</p>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        // Load the footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+    </script>
+</body>
+</html>
