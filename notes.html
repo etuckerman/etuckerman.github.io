@@ -9,7 +9,7 @@
         .notes-container {
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh - var(--header-height));
+            height: calc(100vh - var(--header-height));
             margin-top: var(--header-height);
             padding: 0 20px;
         }
@@ -27,6 +27,7 @@
             border-right: 1px solid var(--primary-color);
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            height: 100%; /* Ensure full height */
         }
         .notes-svg-container {
             flex: 1;
@@ -34,12 +35,17 @@
             overflow-x: hidden;
             padding: 20px;
             box-sizing: border-box;
+            height: 100%; /* Ensure full height */
+            display: flex;
+            flex-direction: column;
         }
         .notes-svg {
             width: 100%;
             height: auto;
             display: block;
             max-width: none;
+            flex: 1; /* Allow SVG to grow */
+            object-fit: contain; /* Ensure SVG fits within container */
         }
         .topic-buttons {
             display: flex;
