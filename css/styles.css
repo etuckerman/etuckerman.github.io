@@ -550,11 +550,27 @@ nav ul li a:hover {
 }
 
 /* Blog preview on index page */
+#blog .blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 #blog .blog-card {
     display: flex;
     flex-direction: row;
     height: auto;
     max-height: 200px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#blog .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 #blog .blog-thumbnail {
@@ -574,6 +590,7 @@ nav ul li a:hover {
 #blog .blog-card h3 {
     margin: 0 0 10px 0;
     font-size: 1.2em;
+    color: var(--primary-color);
 }
 
 #blog .blog-date {
@@ -594,6 +611,12 @@ nav ul li a:hover {
 #blog .blog-card .btn {
     margin-top: auto;
     align-self: flex-start;
+}
+
+#blog .view-all {
+    display: block;
+    width: max-content;
+    margin: 30px auto 0;
 }
 
 /* Projects Section */
