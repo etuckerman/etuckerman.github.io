@@ -1640,10 +1640,16 @@ html {
     flex: 1;
 }
 
-.inline-image {
+.blog-inline-image {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.side-image {
     width: 100%;
     height: auto;
     border-radius: 8px;
+
 }
 
 .info-box {
