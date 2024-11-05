@@ -90,8 +90,8 @@
             <div class="resume-header">
                 <h1 class="resume-title">Elliot Tuckerman's Resume</h1>
                 <div class="resume-actions">
-                    <a href="/resume.pdf" download class="resume-btn">Download PDF</a>
-                    <a href="/resume.pdf" target="_blank" class="resume-btn">Open in New Tab</a>
+                    <a href="/Elliot_Tuckerman_Resume.pdf" download class="resume-btn">Download PDF</a>
+                    <a href="/images/Elliot_Tuckerman_Resume.png" target="_blank" class="resume-btn">View Image</a>
                 </div>
             </div>
             <div id="pdf-viewer"></div>
@@ -109,7 +109,7 @@
         // PDF.js viewer
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
 
-        const url = '/resume.pdf';
+        const url = '/Elliot_Tuckerman_Resume.pdf';
         const loadingTask = pdfjsLib.getDocument(url);
         loadingTask.promise.then(function(pdf) {
             pdf.getPage(1).then(function(page) {
